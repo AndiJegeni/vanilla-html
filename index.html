@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shapes & Text</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #fff; color: #000; font-family: Georgia, serif; padding: 60px 40px; }
+
+    h1 { font-size: 4rem; letter-spacing: -2px; margin-bottom: 10px; }
+    .subtitle { font-size: 1.1rem; margin-bottom: 60px; border-bottom: 2px solid #000; padding-bottom: 20px; }
+
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 60px; }
+
+    .card { border: 2px solid #000; padding: 30px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+
+    .circle { width: 100px; height: 100px; border-radius: 50%; background: #000; }
+    .square { width: 100px; height: 100px; background: #000; }
+    .triangle { width: 0; height: 0; border-left: 55px solid transparent; border-right: 55px solid transparent; border-bottom: 100px solid #000; }
+    .diamond { width: 80px; height: 80px; background: #000; transform: rotate(45deg); }
+    .oval { width: 120px; height: 70px; border-radius: 50%; background: #000; }
+    .ring { width: 100px; height: 100px; border-radius: 50%; border: 8px solid #000; background: transparent; }
+
+    .card p { font-size: 0.95rem; text-align: center; line-height: 1.5; }
+
+    .banner { background: #000; color: #fff; padding: 40px; text-align: center; margin-bottom: 60px; }
+    .banner h2 { font-size: 2rem; margin-bottom: 10px; }
+    .banner p { font-size: 1rem; max-width: 500px; margin: 0 auto; }
+
+    .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
+    .columns div { border-left: 4px solid #000; padding-left: 20px; }
+    .columns h3 { font-size: 1.3rem; margin-bottom: 8px; }
+    .columns p { font-size: 0.95rem; line-height: 1.6; }
+
+    .stripe-row { display: flex; margin-bottom: 60px; }
+    .stripe { flex: 1; height: 60px; }
+    .stripe:nth-child(odd) { background: #000; }
+    .stripe:nth-child(even) { background: #fff; border-top: 2px solid #000; border-bottom: 2px solid #000; }
+
+    footer { text-align: center; padding-top: 30px; border-top: 2px solid #000; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+  <h1>Shapes & Text</h1>
+  <p class="subtitle">A simple page of black and white geometry.</p>
+
+  <div class="grid">
+    <div class="card">
+      <div class="circle"></div>
+      <p>The circle has no corners. It rolls on forever without stopping.</p>
+    </div>
+    <div class="card">
+      <div class="square"></div>
+      <p>The square is stable. Four equal sides, four right angles.</p>
+    </div>
+    <div class="card">
+      <div class="triangle"></div>
+      <p>The triangle is the strongest shape. It does not bend under pressure.</p>
+    </div>
+    <div class="card">
+      <div class="diamond"></div>
+      <p>The diamond is just a square that decided to stand on its corner.</p>
+    </div>
+    <div class="card">
+      <div class="oval"></div>
+      <p>The oval is a circle that got stretched. It keeps things interesting.</p>
+    </div>
+    <div class="card">
+      <div class="ring"></div>
+      <p>The ring is a circle with nothing in the middle. Absence as form.</p>
+    </div>
+  </div>
+
+  <div class="banner">
+    <h2>Everything is made of shapes.</h2>
+    <p>Look around. Rectangles in your windows, circles in your coffee cup, triangles holding up the roof.</p>
+  </div>
+
+  <div class="columns">
+    <div>
+      <h3>On Simplicity</h3>
+      <p>There is something satisfying about black and white. No decisions about color. No gradients. Just contrast. Light and dark. Present and absent. That is all you need to make something visible.</p>
+    </div>
+    <div>
+      <h3>On Geometry</h3>
+      <p>Geometry is the language of space. Every building, every screen, every page is built on invisible lines and angles. These shapes are not decoration. They are the structure underneath everything.</p>
+    </div>
+  </div>
+
+  <div class="stripe-row">
+    <div class="stripe"></div>
+    <div class="stripe"></div>
+    <div class="stripe"></div>
+    <div class="stripe"></div>
+    <div class="stripe"></div>
+    <div class="stripe"></div>
+    <div class="stripe"></div>
+    <div class="stripe"></div>
+  </div>
+
+  <footer>
+    <p>Just shapes and text. Nothing more.</p>
+  </footer>
+
+</body>
+</html>
