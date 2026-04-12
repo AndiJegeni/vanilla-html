@@ -1,0 +1,11 @@
+{
+  "name": "project",
+  "private": true,
+  "scripts": {
+    "dev": "vite"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "vite": "latest"
+  }
+}
