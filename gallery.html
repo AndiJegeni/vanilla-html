@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #fff; color: #000; font-family: Georgia, serif; padding: 60px 40px; }
+
+    h1 { font-size: 4rem; letter-spacing: -2px; margin-bottom: 10px; }
+    .subtitle { font-size: 1.1rem; margin-bottom: 60px; border-bottom: 2px solid #000; padding-bottom: 20px; }
+
+    nav { display: flex; gap: 24px; margin-bottom: 40px; border-bottom: 2px solid #000; padding-bottom: 16px; }
+    nav a { color: #000; text-decoration: none; font-size: 1rem; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    nav a.active { background: #000; color: #fff; padding: 2px 8px; }
+
+    .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 60px; }
+    .tile { aspect-ratio: 1; border: 2px solid #000; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+
+    .t-dot { width: 40px; height: 40px; border-radius: 50%; background: #000; }
+    .t-bar { width: 80%; height: 10px; background: #000; }
+    .t-cross { position: relative; width: 60%; height: 60%; }
+    .t-cross::before, .t-cross::after { content: ''; position: absolute; background: #000; }
+    .t-cross::before { top: 50%; left: 0; right: 0; height: 10px; transform: translateY(-50%); }
+    .t-cross::after { left: 50%; top: 0; bottom: 0; width: 10px; transform: translateX(-50%); }
+    .t-stripes { background: repeating-linear-gradient(45deg, #000 0 10px, #fff 10px 20px); width: 100%; height: 100%; }
+    .t-grid { background-image: linear-gradient(#000 2px, transparent 2px), linear-gradient(90deg, #000 2px, transparent 2px); background-size: 20px 20px; width: 100%; height: 100%; }
+    .t-half { background: linear-gradient(180deg, #000 50%, #fff 50%); width: 100%; height: 100%; }
+    .t-diag { background: linear-gradient(135deg, #000 50%, #fff 50%); width: 100%; height: 100%; }
+    .t-ring { width: 60%; height: 60%; border-radius: 50%; border: 10px solid #000; }
+    .t-triangle-sm { width: 0; height: 0; border-left: 40px solid transparent; border-right: 40px solid transparent; border-bottom: 70px solid #000; }
+    .t-square-sm { width: 50%; height: 50%; background: #000; }
+    .t-diamond-sm { width: 40%; height: 40%; background: #000; transform: rotate(45deg); }
+    .t-dots { width: 100%; height: 100%; background-image: radial-gradient(#000 3px, transparent 3px); background-size: 16px 16px; }
+
+    .caption-row { display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; margin-bottom: 60px; }
+    .caption-row .entry h3 { font-size: 1.2rem; margin-bottom: 6px; }
+    .caption-row .entry p { font-size: 0.95rem; line-height: 1.6; }
+
+    footer { text-align: center; padding-top: 30px; border-top: 2px solid #000; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="gallery.html" class="active">Gallery</a>
+  </nav>
+
+  <h1>Gallery</h1>
+  <p class="subtitle">A wall of patterns and pieces.</p>
+
+  <div class="gallery">
+    <div class="tile"><div class="t-dot"></div></div>
+    <div class="tile"><div class="t-bar"></div></div>
+    <div class="tile"><div class="t-cross"></div></div>
+    <div class="tile"><div class="t-stripes"></div></div>
+    <div class="tile"><div class="t-grid"></div></div>
+    <div class="tile"><div class="t-half"></div></div>
+    <div class="tile"><div class="t-diag"></div></div>
+    <div class="tile"><div class="t-ring"></div></div>
+    <div class="tile"><div class="t-triangle-sm"></div></div>
+    <div class="tile"><div class="t-square-sm"></div></div>
+    <div class="tile"><div class="t-diamond-sm"></div></div>
+    <div class="tile"><div class="t-dots"></div></div>
+  </div>
+
+  <div class="caption-row">
+    <div class="entry">
+      <h3>On Repetition</h3>
+      <p>A pattern is a shape that has decided to appear many times. The eye finds rhythm in the repeat.</p>
+    </div>
+    <div class="entry">
+      <h3>On Emptiness</h3>
+      <p>The spaces between the shapes are as much part of the composition as the shapes themselves.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>Just shapes and text. Nothing more.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { background: #fff; color: #000; font-family: Georgia, serif; padding: 60px 40px; }
+
+    h1 { font-size: 4rem; letter-spacing: -2px; margin-bottom: 10px; }
+    .subtitle { font-size: 1.1rem; margin-bottom: 60px; border-bottom: 2px solid #000; padding-bottom: 20px; }
+
+    nav { display: flex; gap: 24px; margin-bottom: 40px; border-bottom: 2px solid #000; padding-bottom: 16px; }
+    nav a { color: #000; text-decoration: none; font-size: 1rem; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    nav a.active { background: #000; color: #fff; padding: 2px 8px; }
+
+    .prose { max-width: 700px; margin-bottom: 60px; }
+    .prose p { font-size: 1.05rem; line-height: 1.7; margin-bottom: 20px; }
+
+    .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 60px; }
+    .stat { border: 2px solid #000; padding: 30px; text-align: center; }
+    .stat .number { font-size: 3rem; font-weight: bold; display: block; margin-bottom: 8px; }
+    .stat .label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; }
+
+    .pull-quote { border-left: 6px solid #000; padding: 20px 30px; margin-bottom: 60px; font-size: 1.4rem; line-height: 1.5; font-style: italic; }
+
+    footer { text-align: center; padding-top: 30px; border-top: 2px solid #000; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active">About</a>
+    <a href="gallery.html">Gallery</a>
+  </nav>
+
+  <h1>About</h1>
+  <p class="subtitle">The story behind the shapes.</p>
+
+  <div class="prose">
+    <p>This site began as a single page of shapes. Circles, squares, triangles. Nothing more than a study of form against a plain white background.</p>
+    <p>Over time it grew, as small things do, into something with a few more rooms. An about page. A gallery. A place to look around.</p>
+    <p>The philosophy has not changed. Black ink on white paper. Clean edges. No ornament that does not earn its place.</p>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat">
+      <span class="number">6</span>
+      <span class="label">Shapes</span>
+    </div>
+    <div class="stat">
+      <span class="number">2</span>
+      <span class="label">Colors</span>
+    </div>
+    <div class="stat">
+      <span class="number">∞</span>
+      <span class="label">Combinations</span>
+    </div>
+  </div>
+
+  <div class="pull-quote">
+    "The simplest things are often the most honest. A black square tells the truth about itself."
+  </div>
+
+  <footer>
+    <p>Just shapes and text. Nothing more.</p>
+  </footer>
+
+</body>
+</html>
