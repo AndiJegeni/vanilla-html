@@ -3,1206 +3,277 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shapes & Text</title>
+  <title>Kilo — Independent design studio</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #fff; color: #000; font-family: Georgia, serif; padding: 60px 40px; }
+    /* Hero */
+    .hero { padding: 120px 0 100px; }
+    .hero .inner { max-width: 1000px; }
+    .hero h1 { margin-bottom: 28px; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero p.lead { margin-bottom: 36px; max-width: 680px; }
+    .hero .actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
-    h1 { font-size: 4rem; letter-spacing: -2px; margin-bottom: 10px; }
-    .subtitle { font-size: 1.1rem; margin-bottom: 60px; border-bottom: 2px solid #000; padding-bottom: 20px; }
+    /* Marquee-ish logo strip */
+    .logos {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 28px 0;
+    }
+    .logos .row {
+      display: flex; justify-content: space-between; align-items: center; gap: 40px;
+      color: var(--muted); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+      font-size: 1rem; flex-wrap: wrap;
+    }
 
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 60px; }
+    /* Services */
+    .service-card { background: var(--surface); border: 1px solid var(--line); padding: 32px; }
+    .service-card .mark {
+      width: 40px; height: 40px; background: var(--ink); color: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: 0.95rem; margin-bottom: 24px;
+    }
 
-    .card { border: 2px solid #000; padding: 30px; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+    /* Work preview */
+    .work-preview { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+    .work-item { display: block; }
+    .work-thumb {
+      aspect-ratio: 4 / 3;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .work-thumb .shape {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .thumb-a { background: #f2ede3; }
+    .thumb-a .shape::before {
+      content: ''; width: 46%; aspect-ratio: 1; background: var(--ink); border-radius: 50%;
+    }
+    .thumb-b { background: #e8ebe4; }
+    .thumb-b .shape::before {
+      content: ''; width: 55%; height: 14px; background: var(--ink);
+    }
+    .thumb-c { background: #eee6d8; }
+    .thumb-c .shape::before {
+      content: ''; width: 46%; aspect-ratio: 1; background: var(--accent);
+    }
+    .thumb-d { background: #e1e4de; }
+    .thumb-d .shape::before {
+      content: ''; width: 0; height: 0;
+      border-left: 80px solid transparent; border-right: 80px solid transparent;
+      border-bottom: 140px solid var(--ink);
+    }
+    .work-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+    .work-meta h3 { margin-bottom: 4px; }
+    .work-meta .year { color: var(--muted); font-size: 0.9rem; }
+    .work-meta .kind { color: var(--muted); font-size: 0.9rem; }
 
-    .circle { width: 100px; height: 100px; border-radius: 50%; background: #000; }
-    .square { width: 100px; height: 100px; background: #000; }
-    .triangle { width: 0; height: 0; border-left: 55px solid transparent; border-right: 55px solid transparent; border-bottom: 100px solid #000; }
-    .diamond { width: 80px; height: 80px; background: #000; transform: rotate(45deg); }
-    .oval { width: 120px; height: 70px; border-radius: 50%; background: #000; }
-    .ring { width: 100px; height: 100px; border-radius: 50%; border: 8px solid #000; background: transparent; }
+    /* Quote */
+    .quote {
+      max-width: 900px; margin: 0 auto;
+      font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+      line-height: 1.3; letter-spacing: -0.01em;
+      color: var(--ink); font-weight: 500;
+    }
+    .quote::before { content: '“'; font-size: 1.2em; color: var(--accent); margin-right: 4px; }
+    .quote::after { content: '”'; color: var(--accent); }
+    .quote-author { margin-top: 28px; color: var(--muted); font-size: 0.95rem; }
 
-    .card p { font-size: 0.95rem; text-align: center; line-height: 1.5; }
+    /* CTA */
+    .cta {
+      background: var(--ink); color: var(--bg);
+      padding: 80px 0;
+    }
+    .cta .inner { max-width: 900px; margin: 0 auto; padding: 0 32px; text-align: center; }
+    .cta h2 { color: var(--bg); margin-bottom: 20px; }
+    .cta p { color: #c7c7c7; margin-bottom: 32px; }
+    .cta .btn { background: var(--bg); color: var(--ink); border-color: var(--bg); }
+    .cta .btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
 
-    .banner { background: #000; color: #fff; padding: 40px; text-align: center; margin-bottom: 60px; }
-    .banner h2 { font-size: 2rem; margin-bottom: 10px; }
-    .banner p { font-size: 1rem; max-width: 500px; margin: 0 auto; }
-
-    .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-bottom: 60px; }
-    .columns div { border-left: 4px solid #000; padding-left: 20px; }
-    .columns h3 { font-size: 1.3rem; margin-bottom: 8px; }
-    .columns p { font-size: 0.95rem; line-height: 1.6; }
-
-    .stripe-row { display: flex; margin-bottom: 60px; }
-    .stripe { flex: 1; height: 60px; }
-    .stripe:nth-child(odd) { background: #000; }
-    .stripe:nth-child(even) { background: #fff; border-top: 2px solid #000; border-bottom: 2px solid #000; }
-
-    footer { text-align: center; padding-top: 30px; border-top: 2px solid #000; font-size: 0.85rem; }
-
-    nav { display: flex; gap: 24px; margin-bottom: 40px; border-bottom: 2px solid #000; padding-bottom: 16px; }
-    nav a { color: #000; text-decoration: none; font-size: 1rem; font-weight: bold; }
-    nav a:hover { text-decoration: underline; }
-    nav a.active { background: #000; color: #fff; padding: 2px 8px; }
+    @media (max-width: 720px) {
+      .work-preview { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html" class="active">Home</a>
-    <a href="about.html">About</a>
-    <a href="gallery.html">Gallery</a>
-  </nav>
+  <header class="site-header">
+    <div class="inner">
+      <a href="index.html" class="logo">Kilo<span class="logo-dot">.</span></a>
+      <nav class="nav">
+        <a href="index.html" class="active">Home</a>
+        <a href="work.html">Work</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="btn">Start a project</a>
+      </nav>
+    </div>
+  </header>
 
-  <h1>Shapes & Text</h1>
-  <p class="subtitle">A simple page of black and white geometry.</p>
+  <section class="hero">
+    <div class="container inner">
+      <span class="eyebrow">Independent design studio · Est. 2019</span>
+      <h1>We build brands and products that feel <em>honest</em>, clear, and built to last.</h1>
+      <p class="lead">Kilo is a small team of designers and engineers working with founders and teams who care deeply about the details.</p>
+      <div class="actions">
+        <a href="work.html" class="btn">See our work</a>
+        <a href="contact.html" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+  </section>
 
-  <div class="grid">
-    <div class="card">
-      <div class="circle"></div>
-      <p>The circle has no corners. It rolls on forever without stopping.</p>
-    </div>
-    <div class="card">
-      <div class="square"></div>
-      <p>The square is stable. Four equal sides, four right angles.</p>
-    </div>
-    <div class="card">
-      <div class="triangle"></div>
-      <p>The triangle is the strongest shape. It does not bend under pressure.</p>
-    </div>
-    <div class="card">
-      <div class="diamond"></div>
-      <p>The diamond is just a square that decided to stand on its corner.</p>
-    </div>
-    <div class="card">
-      <div class="oval"></div>
-      <p>The oval is a circle that got stretched. It keeps things interesting.</p>
-    </div>
-    <div class="card">
-      <div class="ring"></div>
-      <p>The ring is a circle with nothing in the middle. Absence as form.</p>
+  <div class="logos">
+    <div class="container">
+      <div class="row">
+        <span>Northwind</span>
+        <span>Parallel</span>
+        <span>Otto &amp; Co</span>
+        <span>Field Notes</span>
+        <span>Halcyon</span>
+        <span>Brightline</span>
+      </div>
     </div>
   </div>
 
-  <div class="banner">
-    <h2>Everything is made of shapes.</h2>
-    <p>Look around. Rectangles in your windows, circles in your coffee cup, triangles holding up the roof.</p>
-  </div>
+  <section class="section">
+    <div class="container">
+      <div class="section-head">
+        <div class="text">
+          <span class="eyebrow">What we do</span>
+          <h2>Three practices, one studio.</h2>
+          <p>We work across brand, product, and marketing — but always with the same approach: careful research, then careful execution.</p>
+        </div>
+      </div>
 
-  <div class="columns">
-    <div>
-      <h3>On Simplicity</h3>
-      <p>There is something satisfying about black and white. No decisions about color. No gradients. Just contrast. Light and dark. Present and absent. That is all you need to make something visible.</p>
+      <div class="grid-3">
+        <div class="service-card">
+          <div class="mark">01</div>
+          <h3>Brand identity</h3>
+          <p>Naming, visual systems, typography, and the long documents that hold it all together. We build brands that scale.</p>
+        </div>
+        <div class="service-card">
+          <div class="mark">02</div>
+          <h3>Product design</h3>
+          <p>Interfaces, design systems, and end-to-end flows. We ship web and mobile products with engineering teams from day one.</p>
+        </div>
+        <div class="service-card">
+          <div class="mark">03</div>
+          <h3>Marketing sites</h3>
+          <p>Landing pages and company sites that actually convert. Fast, accessible, and written with real editorial care.</p>
+        </div>
+      </div>
     </div>
-    <div>
-      <h3>On Geometry</h3>
-      <p>Geometry is the language of space. Every building, every screen, every page is built on invisible lines and angles. These shapes are not decoration. They are the structure underneath everything.</p>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="section-head">
+        <div class="text">
+          <span class="eyebrow">Selected work</span>
+          <h2>Recent projects.</h2>
+        </div>
+        <a href="work.html" class="btn btn-ghost">View all</a>
+      </div>
+
+      <div class="work-preview">
+        <a href="work.html" class="work-item">
+          <div class="work-thumb thumb-a"><div class="shape"></div></div>
+          <div class="work-meta">
+            <div>
+              <h3>Northwind Bank</h3>
+              <div class="kind">Brand identity</div>
+            </div>
+            <span class="year">2025</span>
+          </div>
+        </a>
+        <a href="work.html" class="work-item">
+          <div class="work-thumb thumb-c"><div class="shape"></div></div>
+          <div class="work-meta">
+            <div>
+              <h3>Parallel Health</h3>
+              <div class="kind">Product design</div>
+            </div>
+            <span class="year">2025</span>
+          </div>
+        </a>
+        <a href="work.html" class="work-item">
+          <div class="work-thumb thumb-d"><div class="shape"></div></div>
+          <div class="work-meta">
+            <div>
+              <h3>Otto &amp; Co</h3>
+              <div class="kind">Marketing site</div>
+            </div>
+            <span class="year">2024</span>
+          </div>
+        </a>
+        <a href="work.html" class="work-item">
+          <div class="work-thumb thumb-b"><div class="shape"></div></div>
+          <div class="work-meta">
+            <div>
+              <h3>Field Notes</h3>
+              <div class="kind">Brand &amp; packaging</div>
+            </div>
+            <span class="year">2024</span>
+          </div>
+        </a>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="stripe-row">
-    <div class="stripe"></div>
-    <div class="stripe"></div>
-    <div class="stripe"></div>
-    <div class="stripe"></div>
-    <div class="stripe"></div>
-    <div class="stripe"></div>
-    <div class="stripe"></div>
-    <div class="stripe"></div>
-  </div>
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <p class="quote">Kilo delivered the kind of work that makes our engineers proud and our customers trust us faster. They think like owners.</p>
+      <p class="quote-author">— Mara Holloway, CEO of Parallel Health</p>
+    </div>
+  </section>
 
-  <footer>
-    <p>Just shapes and text. Nothing more.</p>
+  <section class="cta">
+    <div class="inner">
+      <h2>Have a project in mind?</h2>
+      <p>We take on a handful of clients each quarter. Tell us what you're working on.</p>
+      <a href="contact.html" class="btn">Start a project</a>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <div class="brand">
+        <div class="logo">Kilo<span class="logo-dot">.</span></div>
+        <p>An independent design studio based in Brooklyn and Lisbon.</p>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Brand identity</a></li>
+          <li><a href="#">Product design</a></li>
+          <li><a href="#">Marketing sites</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bottom">
+      <span>© 2026 Kilo Studio</span>
+      <span>Made with care in Brooklyn</span>
+    </div>
   </footer>
 
-<script id="runtime-tracker">
-(function() {
-  // ============================================
-  // NAVIGATION GUARDS (defense-in-depth)
-  // ============================================
-  // We never want the preview iframe to navigate away and accidentally load the editor app.
-  // Some projects trigger navigation via window.open() or programmatic form submission.
-  function shouldBlockNavigation(url) {
-    if (!url) return false;
-    try {
-      const nextUrl = new URL(url, window.location.href);
-      const currentUrl = new URL(window.location.href);
-      const isSameOrigin = nextUrl.origin === window.location.origin;
-      const isHashOnly =
-        nextUrl.pathname === currentUrl.pathname &&
-        nextUrl.search === currentUrl.search &&
-        nextUrl.hash &&
-        nextUrl.hash !== currentUrl.hash;
-      return isSameOrigin && !isHashOnly;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  try {
-    const originalWindowOpen = window.open;
-    window.open = function(...args) {
-      console.log('RuntimeTracker: Blocking window.open', args?.[0]);
-      return null;
-    };
-    // Keep a reference in case something really needs it (not used by default)
-    window.__runtimeTrackerOriginalWindowOpen = originalWindowOpen;
-  } catch (e) {
-    // ignore
-  }
-
-  try {
-    const originalAssign = window.location.assign.bind(window.location);
-    window.location.assign = function(url) {
-      if (shouldBlockNavigation(url)) {
-        console.log('RuntimeTracker: Blocking location.assign', url);
-        return undefined;
-      }
-      return originalAssign(url);
-    };
-  } catch (e) {
-    // ignore
-  }
-
-  try {
-    const originalReplace = window.location.replace.bind(window.location);
-    window.location.replace = function(url) {
-      if (shouldBlockNavigation(url)) {
-        console.log('RuntimeTracker: Blocking location.replace', url);
-        return undefined;
-      }
-      return originalReplace(url);
-    };
-  } catch (e) {
-    // ignore
-  }
-
-  try {
-    const originalSubmit = HTMLFormElement.prototype.submit;
-    HTMLFormElement.prototype.submit = function(...args) {
-      console.log('RuntimeTracker: Blocking programmatic form.submit()');
-      return undefined;
-    };
-    HTMLFormElement.prototype.__runtimeTrackerOriginalSubmit = originalSubmit;
-  } catch (e) {
-    // ignore
-  }
-
-  try {
-    const originalPushState = history.pushState;
-    history.pushState = function(state, title, url) {
-      if (shouldBlockNavigation(url)) {
-        console.log('RuntimeTracker: Blocking history.pushState', url);
-        return undefined;
-      }
-      return originalPushState.apply(this, arguments);
-    };
-    const originalReplaceState = history.replaceState;
-    history.replaceState = function(state, title, url) {
-      if (shouldBlockNavigation(url)) {
-        console.log('RuntimeTracker: Blocking history.replaceState', url);
-        return undefined;
-      }
-      return originalReplaceState.apply(this, arguments);
-    };
-  } catch (e) {
-    // ignore
-  }
-
-  // ============================================
-  // CONFIGURATION
-  // ============================================
-  let isTrackerActive = false;
-  let selectedElementId = null;
-  let hoveredElementId = null;
-  let elementIdCounter = 0;
-  const elementIdMap = new WeakMap();
-  const idToElementMap = new Map();
-  const parentOrigin = '*';
-  const isNullOrigin = parentOrigin === '*';
-
-  // ============================================
-  // ELEMENT ID MANAGEMENT
-  // ============================================
-  
-  function generateElementId(element) {
-    if (elementIdMap.has(element)) {
-      return elementIdMap.get(element);
-    }
-    
-    // Create a unique ID based on tag, classes, and counter
-    const tag = element.tagName.toLowerCase();
-    const classList = Array.from(element.classList).slice(0, 2).join('-');
-    const id = `rt-${tag}-${classList || 'el'}-${elementIdCounter++}`;
-    
-    elementIdMap.set(element, id);
-    idToElementMap.set(id, element);
-    
-    return id;
-  }
-
-  function getElementById(id) {
-    return idToElementMap.get(id);
-  }
-
-  function assignIdsToAllElements() {
-    const allElements = document.body.querySelectorAll('*');
-    allElements.forEach(el => {
-      // Skip script and style tags
-      if (el.tagName === 'SCRIPT' || el.tagName === 'STYLE' || el.tagName === 'NOSCRIPT') return;
-      generateElementId(el);
-    });
-  }
-
-  // ============================================
-  // STYLE EXTRACTION
-  // ============================================
-  
-  function getComputedStyles(element) {
-    const computed = window.getComputedStyle(element);
-    const rect = element.getBoundingClientRect();
-    
-    // Get most relevant CSS properties
-    return {
-      // Dimensions
-      width: rect.width,
-      height: rect.height,
-      
-      // Position
-      position: computed.position,
-      top: computed.top,
-      right: computed.right,
-      bottom: computed.bottom,
-      left: computed.left,
-      
-      // Display
-      display: computed.display,
-      flexDirection: computed.flexDirection,
-      justifyContent: computed.justifyContent,
-      alignItems: computed.alignItems,
-      gap: computed.gap,
-      
-      // Spacing
-      margin: computed.margin,
-      marginTop: computed.marginTop,
-      marginRight: computed.marginRight,
-      marginBottom: computed.marginBottom,
-      marginLeft: computed.marginLeft,
-      padding: computed.padding,
-      paddingTop: computed.paddingTop,
-      paddingRight: computed.paddingRight,
-      paddingBottom: computed.paddingBottom,
-      paddingLeft: computed.paddingLeft,
-      
-      // Border
-      borderRadius: computed.borderRadius,
-      borderWidth: computed.borderWidth,
-      borderStyle: computed.borderStyle,
-      borderColor: computed.borderColor,
-      
-      // Colors
-      backgroundColor: computed.backgroundColor,
-      color: computed.color,
-      
-      // Typography
-      fontSize: computed.fontSize,
-      fontWeight: computed.fontWeight,
-      fontFamily: computed.fontFamily,
-      lineHeight: computed.lineHeight,
-      textAlign: computed.textAlign,
-      letterSpacing: computed.letterSpacing,
-      
-      // Effects
-      opacity: computed.opacity,
-      boxShadow: computed.boxShadow,
-      transform: computed.transform,
-      
-      // Overflow
-      overflow: computed.overflow
-    };
-  }
-
-  function getInlineStyles(element) {
-    // Get only explicitly set inline styles
-    const style = element.style;
-    const styles = {};
-    
-    for (let i = 0; i < style.length; i++) {
-      const prop = style[i];
-      styles[prop] = style.getPropertyValue(prop);
-    }
-    
-    return styles;
-  }
-
-  function getElementInfo(element) {
-    if (!element || element === document.body || element === document.documentElement) {
-      return null;
-    }
-    
-    const id = generateElementId(element);
-    const rect = element.getBoundingClientRect();
-    
-    return {
-      id,
-      tagName: element.tagName.toLowerCase(),
-      className: element.className,
-      textContent: element.textContent?.slice(0, 100),
-      bounds: {
-        x: rect.x,
-        y: rect.y,
-        width: rect.width,
-        height: rect.height,
-        top: rect.top,
-        right: rect.right,
-        bottom: rect.bottom,
-        left: rect.left
-      },
-      computedStyles: getComputedStyles(element),
-      inlineStyles: getInlineStyles(element),
-      hasChildren: element.children.length > 0,
-      parentId: element.parentElement ? generateElementId(element.parentElement) : null,
-      attributes: getElementAttributes(element)
-    };
-  }
-
-  function getElementAttributes(element) {
-    const attrs = {};
-    for (const attr of element.attributes) {
-      if (attr.name !== 'style' && attr.name !== 'class') {
-        attrs[attr.name] = attr.value;
-      }
-    }
-    return attrs;
-  }
-
-  // ============================================
-  // HIGHLIGHT OVERLAY
-  // ============================================
-  
-  let hoverOverlay = null;
-  let selectionOverlay = null;
-  let elementBadge = null;
-
-  function createOverlay(type) {
-    const overlay = document.createElement('div');
-    overlay.id = `runtime-tracker-${type}-overlay`;
-    overlay.style.cssText = `
-      position: fixed;
-      pointer-events: none;
-      z-index: 99999;
-      box-sizing: border-box;
-      transition: all 0.1s ease-out;
-    `;
-    
-    if (type === 'hover') {
-      // Solid visible border with subtle fill for better visibility
-      overlay.style.border = '2px solid #2563eb';
-      overlay.style.background = 'rgba(37, 99, 235, 0.08)';
-      overlay.style.borderRadius = '2px';
-    } else {
-      overlay.style.border = '2px solid #2563eb';
-      overlay.style.background = 'rgba(37, 99, 235, 0.1)';
-    }
-    
-    document.body.appendChild(overlay);
-    return overlay;
-  }
-
-  function createBadge() {
-    const badge = document.createElement('div');
-    badge.id = 'runtime-tracker-badge';
-    badge.style.cssText = `
-      position: fixed;
-      pointer-events: none;
-      z-index: 100000;
-      padding: 4px 8px;
-      background: #2563eb;
-      color: white;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      font-size: 11px;
-      font-weight: 500;
-      border-radius: 4px;
-      white-space: nowrap;
-      display: none;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-    `;
-    document.body.appendChild(badge);
-    return badge;
-  }
-
-  function updateOverlay(overlay, element, showBadge = false) {
-    if (!overlay || !element) {
-      if (overlay) overlay.style.display = 'none';
-      if (elementBadge) elementBadge.style.display = 'none';
-      return;
-    }
-    
-    const rect = element.getBoundingClientRect();
-    overlay.style.display = 'block';
-    overlay.style.left = rect.left + 'px';
-    overlay.style.top = rect.top + 'px';
-    overlay.style.width = rect.width + 'px';
-    overlay.style.height = rect.height + 'px';
-
-    // Update element badge
-    if (showBadge && elementBadge) {
-      const tagName = element.tagName.toLowerCase();
-      const className = element.className ? '.' + element.className.split(' ')[0] : '';
-      const id = element.id ? '#' + element.id : '';
-      
-      // Create display text: tag + id or class
-      let displayText = tagName;
-      if (id) {
-        displayText += id;
-      } else if (className) {
-        displayText += className;
-      }
-      
-      elementBadge.textContent = displayText;
-      elementBadge.style.display = 'block';
-      
-      // Position badge above the element
-      const badgeTop = rect.top - 28;
-      elementBadge.style.left = rect.left + 'px';
-      elementBadge.style.top = (badgeTop > 0 ? badgeTop : rect.bottom + 4) + 'px';
-    }
-  }
-
-  function hideOverlay(overlay) {
-    if (overlay) overlay.style.display = 'none';
-  }
-
-  function hideBadge() {
-    if (elementBadge) elementBadge.style.display = 'none';
-  }
-
-  // ============================================
-  // EVENT HANDLERS
-  // ============================================
-  
-  // Minimum clickable size in pixels - elements smaller than this will select parent
-  const MIN_CLICKABLE_SIZE = 20;
-
-  // Text-bearing elements that users want to select individually,
-  // even when they are narrower/shorter than MIN_CLICKABLE_SIZE.
-  const TEXT_ELEMENT_TAGS = new Set([
-    'p', 'span', 'a', 'label',
-    'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
-    'li', 'td', 'th',
-    'button', 'em', 'strong', 'b', 'i', 'u',
-    'small', 'sub', 'sup', 'code', 'pre',
-    'blockquote', 'figcaption', 'legend', 'summary'
-  ]);
-
-  // Absolute floor: elements smaller than this in BOTH dimensions
-  // are treated as invisible/decorative regardless of tag.
-  const MIN_TEXT_ELEMENT_SIZE = 5;
-
-  // Drag state
-  let isDragging = false;
-  let dragStartX = 0;
-  let dragStartY = 0;
-  let dragElement = null;
-  let dragElementOriginalTransform = '';
-  let dragElementOriginalPosition = '';
-  let dragStartRect = null;
-  let dragGhost = null;
-  let currentDragDeltaX = 0;
-  let currentDragDeltaY = 0;
-  
-  // Find a suitable element to select (prefer larger parents for tiny elements)
-  function findSelectableElement(element) {
-    if (!element || element === document.body || element === document.documentElement) {
-      return element;
-    }
-
-    const rect = element.getBoundingClientRect();
-
-    // Large enough — select directly
-    if (rect.width >= MIN_CLICKABLE_SIZE && rect.height >= MIN_CLICKABLE_SIZE) {
-      return element;
-    }
-
-    // Small element — but if it's a meaningful text element, keep it selected
-    const tag = element.tagName.toLowerCase();
-    if (TEXT_ELEMENT_TAGS.has(tag)) {
-      if (rect.width >= MIN_TEXT_ELEMENT_SIZE || rect.height >= MIN_TEXT_ELEMENT_SIZE) {
-        return element;
-      }
-    }
-
-    // Non-text or invisible element — walk up to a larger parent
-    let parent = element.parentElement;
-    while (parent && parent !== document.body) {
-      const parentRect = parent.getBoundingClientRect();
-      if (parentRect.width >= MIN_CLICKABLE_SIZE && parentRect.height >= MIN_CLICKABLE_SIZE) {
-        return parent;
-      }
-      parent = parent.parentElement;
-    }
-
-    return element;
-  }
-  
-  // Create drag ghost indicator
-  function createDragGhost(element) {
-    const rect = element.getBoundingClientRect();
-    const ghost = document.createElement('div');
-    ghost.id = 'runtime-tracker-drag-ghost';
-    ghost.style.cssText = `
-      position: fixed;
-      pointer-events: none;
-      z-index: 100001;
-      left: ${rect.left}px;
-      top: ${rect.top}px;
-      width: ${rect.width}px;
-      height: ${rect.height}px;
-      border: 2px dashed #2563eb;
-      background: rgba(37, 99, 235, 0.05);
-      border-radius: 4px;
-      transition: none;
-    `;
-    document.body.appendChild(ghost);
-    return ghost;
-  }
-  
-  // Update drag ghost position
-  function updateDragGhost(ghost, deltaX, deltaY) {
-    if (!ghost || !dragStartRect) return;
-    ghost.style.left = (dragStartRect.left + deltaX) + 'px';
-    ghost.style.top = (dragStartRect.top + deltaY) + 'px';
-  }
-  
-  // Remove drag ghost
-  function removeDragGhost() {
-    if (dragGhost) {
-      dragGhost.remove();
-      dragGhost = null;
-    }
-  }
-  
-  function handleMouseDown(e) {
-    if (!isTrackerActive) return;
-    if (e.target.id?.startsWith('runtime-tracker-')) return;
-    
-    const element = findSelectableElement(e.target);
-    const id = generateElementId(element);
-    
-    // Only start drag if clicking on already selected element
-    if (id === selectedElementId) {
-      isDragging = true;
-      dragStartX = e.clientX;
-      dragStartY = e.clientY;
-      dragElement = element;
-      dragStartRect = element.getBoundingClientRect();
-      dragElementOriginalTransform = element.style.transform || '';
-      dragElementOriginalPosition = window.getComputedStyle(element).position;
-      currentDragDeltaX = 0;
-      currentDragDeltaY = 0;
-      
-      // Create ghost outline at original position
-      dragGhost = createDragGhost(element);
-      
-      // Change cursor
-      document.body.style.cursor = 'grabbing';
-      
-      e.preventDefault();
-      e.stopPropagation();
-      
-      console.log('RuntimeTracker: Started drag on', element.tagName);
-      
-      // Notify parent that drag started
-      window.parent?.postMessage({
-        type: 'element-drag-start',
-        elementId: id,
-        startX: dragStartX,
-        startY: dragStartY
-      }, parentOrigin);
-    }
-  }
-  
-  function handleClick(e) {
-    console.log('RuntimeTracker: Click detected, isActive:', isTrackerActive, 'isDragging:', isDragging);
-
-    // ALWAYS prevent navigation for links and buttons, even when tracker is not active
-    // This is a design preview tool - we never want actual navigation
-    const clickTarget = e.target.closest('a, button, [type="submit"], [role="button"]');
-    let blockedNavigation = false;
-
-    if (clickTarget) {
-      const href = clickTarget.getAttribute('href');
-      const targetAttr = clickTarget.getAttribute('target');
-
-      // Block navigation for links (except pure anchor links to same page)
-      if (clickTarget.tagName === 'A') {
-        const isAnchorOnly = href && (href === '#' || (href.startsWith('#') && !href.includes('/')));
-        const hasNavigationTarget = targetAttr === '_parent' || targetAttr === '_top' || targetAttr === '_blank';
-
-        if (!isAnchorOnly || hasNavigationTarget) {
-          console.log('RuntimeTracker: Blocking navigation to', href, 'target:', targetAttr);
-          e.preventDefault();
-          // Ensure site-level handlers (especially capture-phase SPA routers) don't run.
-          // We only do this for anchors to avoid breaking general "button opens modal" interactions.
-          if (typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
-          blockedNavigation = true;
-        }
-      } else if (clickTarget.tagName === 'BUTTON' || clickTarget.getAttribute('type') === 'submit') {
-        // Block form submissions
-        e.preventDefault();
-        // For submit buttons, also stop immediate propagation (common nav pattern in forms)
-        const isSubmit = clickTarget.getAttribute('type') === 'submit' || clickTarget.closest('form');
-        if (isSubmit && typeof e.stopImmediatePropagation === 'function') e.stopImmediatePropagation();
-        blockedNavigation = true;
-      }
-    }
-
-    // If tracker is not active, we've blocked navigation if needed, now return
-    if (!isTrackerActive) {
-      if (blockedNavigation) {
-        e.stopPropagation();
-      }
-      return;
-    }
-
-    // If we were dragging, don't treat this as a click
-    if (isDragging) {
-      return;
-    }
-
-    // Skip tracker overlays
-    if (e.target.id?.startsWith('runtime-tracker-')) return;
-
-    e.preventDefault();
-    e.stopPropagation();
-    
-    // Find the best element to select (prefer larger parents for tiny elements)
-    const element = findSelectableElement(e.target);
-    console.log('RuntimeTracker: Clicked element:', element.tagName, element.className);
-    const info = getElementInfo(element);
-    
-    if (info) {
-      selectedElementId = info.id;
-      updateOverlay(selectionOverlay, element, true); // Show badge on selection
-      hideOverlay(hoverOverlay); // Hide hover overlay when selected
-      
-      console.log('RuntimeTracker: Sending element-clicked for', info.tagName);
-      window.parent?.postMessage({
-        type: 'element-clicked',
-        ...info
-      }, parentOrigin);
-    }
-  }
-
-  function handleMouseMove(e) {
-    if (!isTrackerActive) return;
-    
-    // Handle dragging
-    if (isDragging && dragElement) {
-      const deltaX = e.clientX - dragStartX;
-      const deltaY = e.clientY - dragStartY;
-      currentDragDeltaX = deltaX;
-      currentDragDeltaY = deltaY;
-      
-      // Apply transform to move the element visually
-      const existingTransform = dragElementOriginalTransform;
-      dragElement.style.transform = `${existingTransform} translate(${deltaX}px, ${deltaY}px)`.trim();
-      
-      // Update selection overlay to follow
-      updateOverlay(selectionOverlay, dragElement, false);
-      
-      // Update ghost position (stays at original position for reference)
-      // Actually, let's make the ghost show where element started
-      // and the element itself moves - this gives better visual feedback
-      
-      // Notify parent of drag progress (throttled)
-      if (!handleMouseMove.lastUpdate || Date.now() - handleMouseMove.lastUpdate > 16) {
-        handleMouseMove.lastUpdate = Date.now();
-        window.parent?.postMessage({
-          type: 'element-dragging',
-          elementId: selectedElementId,
-          deltaX,
-          deltaY
-        }, parentOrigin);
-      }
-      
-      e.preventDefault();
-      return;
-    }
-    
-    // Skip tracker overlays
-    if (e.target.id?.startsWith('runtime-tracker-')) return;
-    
-    // Find the best element to highlight (prefer larger parents for tiny elements)
-    const element = findSelectableElement(e.target);
-    const id = generateElementId(element);
-    
-    // Don't show hover on selected element
-    if (id === selectedElementId) {
-      hideOverlay(hoverOverlay);
-      return;
-    }
-    
-    if (id !== hoveredElementId) {
-      hoveredElementId = id;
-      updateOverlay(hoverOverlay, element, true); // Show badge on hover
-      
-      const info = getElementInfo(element);
-      if (info) {
-        window.parent?.postMessage({
-          type: 'element-hovered',
-          ...info
-        }, parentOrigin);
-      }
-    }
-  }
-  
-  function handleMouseUp(e) {
-    if (!isDragging || !dragElement) return;
-    
-    const deltaX = currentDragDeltaX;
-    const deltaY = currentDragDeltaY;
-    
-    // Only process if there was actual movement (more than 3px to avoid accidental drags)
-    const hasMoved = Math.abs(deltaX) > 3 || Math.abs(deltaY) > 3;
-    
-    if (hasMoved) {
-      // Get the element's computed styles to determine best positioning strategy
-      const computed = window.getComputedStyle(dragElement);
-      const position = computed.position;
-      const display = computed.display;
-      
-      // Determine the best way to persist this position
-      let positionStrategy = 'transform';
-      let positionValue = {};
-      
-      if (position === 'absolute' || position === 'fixed') {
-        // For absolute/fixed positioned elements, adjust top/left
-        const currentTop = parseFloat(computed.top) || 0;
-        const currentLeft = parseFloat(computed.left) || 0;
-        positionStrategy = 'position';
-        positionValue = {
-          top: (currentTop + deltaY) + 'px',
-          left: (currentLeft + deltaX) + 'px'
-        };
-      } else if (position === 'relative') {
-        // For relative, we can use top/left or transform
-        const currentTop = parseFloat(computed.top) || 0;
-        const currentLeft = parseFloat(computed.left) || 0;
-        positionStrategy = 'relative';
-        positionValue = {
-          top: (currentTop + deltaY) + 'px',
-          left: (currentLeft + deltaX) + 'px'
-        };
-      } else {
-        // For static elements, best to use margin or change to relative
-        // Using margin is less intrusive
-        const currentMarginTop = parseFloat(computed.marginTop) || 0;
-        const currentMarginLeft = parseFloat(computed.marginLeft) || 0;
-        positionStrategy = 'margin';
-        positionValue = {
-          marginTop: (currentMarginTop + deltaY) + 'px',
-          marginLeft: (currentMarginLeft + deltaX) + 'px'
-        };
-      }
-      
-      // Keep the visual transform for now (until code is updated)
-      // The parent will handle persisting this to code
-      
-      console.log('RuntimeTracker: Drag ended', {
-        elementId: selectedElementId,
-        deltaX,
-        deltaY,
-        positionStrategy,
-        positionValue
-      });
-      
-      // Notify parent of drag end with position info
-      window.parent?.postMessage({
-        type: 'element-drag-end',
-        elementId: selectedElementId,
-        deltaX,
-        deltaY,
-        positionStrategy,
-        positionValue,
-        originalPosition: position,
-        elementInfo: getElementInfo(dragElement)
-      }, parentOrigin);
-    } else {
-      // No significant movement - revert transform
-      dragElement.style.transform = dragElementOriginalTransform;
-      updateOverlay(selectionOverlay, dragElement, true);
-    }
-    
-    // Cleanup
-    removeDragGhost();
-    isDragging = false;
-    dragElement = null;
-    dragStartRect = null;
-    document.body.style.cursor = 'crosshair';
-  }
-
-  function handleMouseLeave() {
-    // If dragging, treat leaving the document as mouse up
-    if (isDragging) {
-      handleMouseUp({ clientX: dragStartX + currentDragDeltaX, clientY: dragStartY + currentDragDeltaY });
-    }
-    
-    hoveredElementId = null;
-    hideOverlay(hoverOverlay);
-    // Only hide badge if nothing is selected (selection badge should remain visible)
-    if (!selectedElementId && elementBadge) {
-      hideBadge();
-    }
-    
-    window.parent?.postMessage({
-      type: 'element-hover-end'
-    }, parentOrigin);
-  }
-
-  function handleScroll() {
-    // Update selection overlay position on scroll
-    if (selectedElementId && selectionOverlay) {
-      const element = getElementById(selectedElementId);
-      if (element) {
-        updateOverlay(selectionOverlay, element, true);
-      }
-    }
-    
-    // Update hover overlay position on scroll
-    if (hoveredElementId && hoverOverlay) {
-      const element = getElementById(hoveredElementId);
-      if (element) {
-        updateOverlay(hoverOverlay, element, !selectedElementId);
-      }
-    }
-  }
-
-  function handleResize() {
-    // Update overlays on window resize
-    handleScroll();
-  }
-
-  // ============================================
-  // STYLE UPDATES
-  // ============================================
-  
-  function applyStyleUpdate(elementId, property, value) {
-    console.log('applyStyleUpdate called:', { elementId, property, value });
-    const element = getElementById(elementId);
-    console.log('Element found:', element, 'from idToElementMap size:', idToElementMap.size);
-    if (!element) {
-      console.log('Element not found for ID:', elementId);
-      // Try to re-assign IDs and find the element again
-      // This can help if the page was modified since IDs were assigned
-      assignIdsToAllElements();
-      const retryElement = getElementById(elementId);
-      if (!retryElement) {
-        console.log('Element still not found after re-assigning IDs');
-        return false;
-      }
-      console.log('Element found after re-assigning IDs');
-    }
-    
-    const targetElement = element || getElementById(elementId);
-    
-    try {
-      // Convert camelCase to kebab-case for CSS
-      const cssProperty = property.replace(/([A-Z])/g, '-$1').toLowerCase();
-      console.log('Setting style:', cssProperty, '=', value);
-      
-      // If value is empty, remove the property instead of setting it
-      if (value === '' || value === null || value === undefined) {
-        console.log('Removing style property:', cssProperty);
-        targetElement.style.removeProperty(cssProperty);
-      } else {
-        targetElement.style.setProperty(cssProperty, value);
-      }
-      
-      // Update selection overlay if this is the selected element
-      if (elementId === selectedElementId) {
-        updateOverlay(selectionOverlay, targetElement);
-      }
-      
-      window.parent?.postMessage({
-        type: 'style-updated',
-        elementId,
-        property,
-        value,
-        success: true
-      }, parentOrigin);
-      
-      return true;
-    } catch (err) {
-      console.error('Failed to apply style:', err);
-      return false;
-    }
-  }
-
-  function removeStyleProperty(elementId, property) {
-    const element = getElementById(elementId);
-    if (!element) return false;
-    
-    try {
-      const cssProperty = property.replace(/([A-Z])/g, '-$1').toLowerCase();
-      element.style.removeProperty(cssProperty);
-      return true;
-    } catch (err) {
-      return false;
-    }
-  }
-
-  // ============================================
-  // MESSAGE HANDLER
-  // ============================================
-  
-  window.addEventListener('message', (event) => {
-    // Security: Only accept messages from parent; allow null-origin if srcdoc/about:blank.
-    if (event.source !== window.parent) return;
-    // origin check skipped for cross-origin WebContainer
-
-    const data = event.data;
-    console.log('RuntimeTracker: Received message', data?.type, data);
-
-    switch (data.type) {
-      case 'activate-tracker':
-        console.log('RuntimeTracker: Activating tracker');
-        isTrackerActive = true;
-        if (!hoverOverlay) hoverOverlay = createOverlay('hover');
-        if (!selectionOverlay) selectionOverlay = createOverlay('selection');
-        if (!elementBadge) elementBadge = createBadge();
-        assignIdsToAllElements();
-        document.body.style.cursor = 'crosshair';
-        // Send confirmation back to parent
-        window.parent?.postMessage({ type: 'tracker-activated' }, parentOrigin);
-        break;
-        
-      case 'deactivate-tracker':
-        console.log('RuntimeTracker: Deactivating tracker');
-        isTrackerActive = false;
-        hideOverlay(hoverOverlay);
-        hideOverlay(selectionOverlay);
-        hideBadge();
-        selectedElementId = null;
-        hoveredElementId = null;
-        document.body.style.cursor = '';
-        break;
-        
-      case 'update-element-style':
-        console.log('RuntimeTracker: Received update-element-style', data);
-        if (data.elementId && data.property) {
-          const result = applyStyleUpdate(data.elementId, data.property, data.value);
-          console.log('RuntimeTracker: applyStyleUpdate result:', result);
-        }
-        break;
-        
-      case 'update-element-styles':
-        if (data.elementId && data.styles) {
-          Object.entries(data.styles).forEach(([prop, val]) => {
-            applyStyleUpdate(data.elementId, prop, val);
-          });
-        }
-        break;
-        
-      case 'remove-element-style':
-        if (data.elementId && data.property) {
-          removeStyleProperty(data.elementId, data.property);
-        }
-        break;
-        
-      case 'select-element':
-        if (data.elementId) {
-          const element = getElementById(data.elementId);
-          if (element) {
-            selectedElementId = data.elementId;
-            updateOverlay(selectionOverlay, element);
-          }
-        }
-        break;
-        
-      case 'deselect-element':
-        selectedElementId = null;
-        hideOverlay(selectionOverlay);
-        hideBadge();
-        break;
-        
-      case 'reset-element-transform':
-        // Reset the visual transform after position has been applied to code
-        if (data.elementId) {
-          const element = getElementById(data.elementId);
-          if (element) {
-            element.style.transform = data.originalTransform || '';
-            updateOverlay(selectionOverlay, element, true);
-          }
-        }
-        break;
-        
-      case 'apply-element-position':
-        // Apply position changes directly (when position strategy is determined)
-        if (data.elementId && data.styles) {
-          const element = getElementById(data.elementId);
-          if (element) {
-            Object.entries(data.styles).forEach(([prop, val]) => {
-              const cssProperty = prop.replace(/([A-Z])/g, '-$1').toLowerCase();
-              element.style.setProperty(cssProperty, val);
-            });
-            // Reset transform after applying position
-            element.style.transform = data.originalTransform || '';
-            updateOverlay(selectionOverlay, element, true);
-          }
-        }
-        break;
-        
-      case 'get-element-info':
-        if (data.elementId) {
-          const element = getElementById(data.elementId);
-          if (element) {
-            const info = getElementInfo(element);
-            window.parent?.postMessage({
-              type: 'element-info-response',
-              requestId: data.requestId,
-              ...info
-            }, parentOrigin);
-          }
-        }
-        break;
-        
-      case 'get-current-html':
-        window.parent?.postMessage({
-          type: 'current-html-response',
-          requestId: data.requestId,
-          html: document.documentElement.outerHTML
-        }, parentOrigin);
-        break;
-
-      case 'load-google-font':
-        // Load a Google Font into the iframe
-        if (data.fontFamily) {
-          loadGoogleFont(data.fontFamily, data.weights);
-        }
-        break;
-
-      case 'load-google-fonts':
-        // Load multiple Google Fonts
-        if (data.fonts && Array.isArray(data.fonts)) {
-          data.fonts.forEach(font => {
-            loadGoogleFont(font.family, font.weights);
-          });
-        }
-        break;
-    }
-  });
-
-  // ============================================
-  // GOOGLE FONTS LOADING
-  // ============================================
-
-  const loadedFonts = new Set();
-
-  function loadGoogleFont(family, weights) {
-    if (!family || loadedFonts.has(family)) return;
-
-    // Generate Google Fonts URL
-    const encodedFamily = family.replace(/ /g, '+');
-    let url;
-
-    if (weights && weights.length > 0) {
-      const weightStr = weights.sort((a, b) => a - b).join(';');
-      url = 'https://fonts.googleapis.com/css2?family=' + encodedFamily + ':wght@' + weightStr + '&display=swap';
-    } else {
-      // Default to common weights
-      url = 'https://fonts.googleapis.com/css2?family=' + encodedFamily + ':wght@400;700&display=swap';
-    }
-
-    // Check if link already exists
-    const linkId = 'google-font-' + family.replace(/\s+/g, '-').toLowerCase();
-    if (document.getElementById(linkId)) {
-      loadedFonts.add(family);
-      return;
-    }
-
-    // Create and inject link element
-    const link = document.createElement('link');
-    link.id = linkId;
-    link.rel = 'stylesheet';
-    link.href = url;
-
-    link.onload = function() {
-      loadedFonts.add(family);
-      console.log('RuntimeTracker: Loaded Google Font:', family);
-
-      // Notify parent that font loaded
-      window.parent?.postMessage({
-        type: 'font-loaded',
-        fontFamily: family
-      }, parentOrigin);
-    };
-
-    link.onerror = function() {
-      console.error('RuntimeTracker: Failed to load Google Font:', family);
-      window.parent?.postMessage({
-        type: 'font-load-error',
-        fontFamily: family
-      }, parentOrigin);
-    };
-
-    document.head.appendChild(link);
-  }
-
-  // ============================================
-  // INITIALIZATION
-  // ============================================
-  
-  // Prevent all form submissions - this is a preview, not a real app
-  function handleFormSubmit(e) {
-    console.log('RuntimeTracker: Blocking form submission');
-    e.preventDefault();
-    e.stopPropagation();
-  }
-
-  // Prevent all navigation attempts via beforeunload
-  function handleBeforeUnload(e) {
-    // This won't stop the navigation but logs it
-    console.log('RuntimeTracker: Navigation attempt detected');
-  }
-
-  function init() {
-    console.log('RuntimeTracker: Initializing...');
-    document.addEventListener('mousedown', handleMouseDown, true);
-    document.addEventListener('click', handleClick, true);
-    document.addEventListener('mousemove', handleMouseMove, true);
-    document.addEventListener('mouseup', handleMouseUp, true);
-    document.addEventListener('mouseleave', handleMouseLeave, true);
-    document.addEventListener('scroll', handleScroll, true);
-    window.addEventListener('scroll', handleScroll, true);
-    window.addEventListener('resize', handleResize, true);
-
-    // Block form submissions
-    document.addEventListener('submit', handleFormSubmit, true);
-
-    // Disable all links from navigating by default (defense in depth)
-    document.querySelectorAll('a[href]').forEach(link => {
-      const href = link.getAttribute('href');
-      if (href && !href.startsWith('#') && !href.startsWith('javascript:')) {
-        link.addEventListener('click', (e) => {
-          console.log('RuntimeTracker: Blocking link navigation to', href);
-          e.preventDefault();
-        }, true);
-      }
-    });
-
-    // Notify parent that tracker is ready
-    console.log('RuntimeTracker: Sending tracker-ready');
-    window.parent?.postMessage({
-      type: 'tracker-ready'
-    }, parentOrigin);
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-</script></body>
+</body>
 </html>

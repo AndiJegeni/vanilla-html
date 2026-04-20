@@ -3,70 +3,217 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About</title>
+  <title>About — Kilo</title>
+  <link rel="stylesheet" href="style.css">
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #fff; color: #000; font-family: Georgia, serif; padding: 60px 40px; }
+    .page-hero { padding: 80px 0 40px; }
+    .page-hero h1 { max-width: 900px; margin-bottom: 20px; }
+    .page-hero p.lead { margin-top: 12px; }
 
-    h1 { font-size: 4rem; letter-spacing: -2px; margin-bottom: 10px; }
-    .subtitle { font-size: 1.1rem; margin-bottom: 60px; border-bottom: 2px solid #000; padding-bottom: 20px; }
+    .story { display: grid; grid-template-columns: 1fr 2fr; gap: 60px; align-items: start; }
+    .story .label { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--muted); font-weight: 600; }
+    .story .body p { font-size: 1.1rem; color: #262626; margin-bottom: 20px; line-height: 1.65; }
 
-    nav { display: flex; gap: 24px; margin-bottom: 40px; border-bottom: 2px solid #000; padding-bottom: 16px; }
-    nav a { color: #000; text-decoration: none; font-size: 1rem; font-weight: bold; }
-    nav a:hover { text-decoration: underline; }
-    nav a.active { background: #000; color: #fff; padding: 2px 8px; }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; padding: 48px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .stats .item .num { font-size: 3rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 6px; }
+    .stats .item .label { color: var(--muted); font-size: 0.95rem; }
 
-    .prose { max-width: 700px; margin-bottom: 60px; }
-    .prose p { font-size: 1.05rem; line-height: 1.7; margin-bottom: 20px; }
+    .values .grid-3 { gap: 40px; }
+    .value .num { color: var(--accent); font-weight: 700; font-size: 0.9rem; margin-bottom: 12px; letter-spacing: 0.06em; }
+    .value h3 { margin-bottom: 10px; }
+    .value p { color: var(--muted); }
 
-    .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; margin-bottom: 60px; }
-    .stat { border: 2px solid #000; padding: 30px; text-align: center; }
-    .stat .number { font-size: 3rem; font-weight: bold; display: block; margin-bottom: 8px; }
-    .stat .label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px; }
+    .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+    .member .photo {
+      aspect-ratio: 4 / 5;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    .member .initials {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem; font-weight: 700; color: var(--ink); letter-spacing: -0.03em;
+    }
+    .member .photo.bg-a { background: #f2ede3; }
+    .member .photo.bg-b { background: #e8ebe4; }
+    .member .photo.bg-c { background: #eee6d8; }
+    .member .photo.bg-d { background: #e1e4de; }
+    .member h4 { font-size: 1.05rem; font-weight: 700; margin-bottom: 2px; }
+    .member .role { color: var(--muted); font-size: 0.9rem; }
 
-    .pull-quote { border-left: 6px solid #000; padding: 20px 30px; margin-bottom: 60px; font-size: 1.4rem; line-height: 1.5; font-style: italic; }
-
-    footer { text-align: center; padding-top: 30px; border-top: 2px solid #000; font-size: 0.85rem; }
+    @media (max-width: 900px) {
+      .story { grid-template-columns: 1fr; gap: 24px; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .team-grid { grid-template-columns: 1fr 1fr; }
+    }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="about.html" class="active">About</a>
-    <a href="gallery.html">Gallery</a>
-  </nav>
-
-  <h1>About</h1>
-  <p class="subtitle">The story behind the shapes.</p>
-
-  <div class="prose">
-    <p>This site began as a single page of shapes. Circles, squares, triangles. Nothing more than a study of form against a plain white background.</p>
-    <p>Over time it grew, as small things do, into something with a few more rooms. An about page. A gallery. A place to look around.</p>
-    <p>The philosophy has not changed. Black ink on white paper. Clean edges. No ornament that does not earn its place.</p>
-  </div>
-
-  <div class="stat-row">
-    <div class="stat">
-      <span class="number">6</span>
-      <span class="label">Shapes</span>
+  <header class="site-header">
+    <div class="inner">
+      <a href="index.html" class="logo">Kilo<span class="logo-dot">.</span></a>
+      <nav class="nav">
+        <a href="index.html">Home</a>
+        <a href="work.html">Work</a>
+        <a href="about.html" class="active">About</a>
+        <a href="contact.html" class="btn">Start a project</a>
+      </nav>
     </div>
-    <div class="stat">
-      <span class="number">2</span>
-      <span class="label">Colors</span>
-    </div>
-    <div class="stat">
-      <span class="number">∞</span>
-      <span class="label">Combinations</span>
-    </div>
-  </div>
+  </header>
 
-  <div class="pull-quote">
-    "The simplest things are often the most honest. A black square tells the truth about itself."
-  </div>
+  <section class="page-hero">
+    <div class="container">
+      <span class="eyebrow">About the studio</span>
+      <h1>A small studio doing careful work for people who care about the details.</h1>
+      <p class="lead">We started Kilo in 2019 because we wanted to work on fewer things, more deeply, with people we actually like.</p>
+    </div>
+  </section>
 
-  <footer>
-    <p>Just shapes and text. Nothing more.</p>
+  <section class="section-tight">
+    <div class="container">
+      <div class="story">
+        <div class="label">Our story</div>
+        <div class="body">
+          <p>Kilo was founded by two designers who had spent a decade at larger agencies and product teams and grown tired of the churn. We wanted a studio where research wasn't a line item, where engineers sat next to designers, and where a brand could actually ship.</p>
+          <p>Today we're a team of seven across New York and Lisbon. We work with a handful of clients each quarter — early-stage founders who need a full brand from scratch, growth-stage teams rebuilding their product, and the occasional nonprofit that catches our eye.</p>
+          <p>We believe the best work comes from long, uninterrupted focus. We don't run pitches, we don't chase trends, and we only take on projects where we think we can do something genuinely good.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-tight">
+    <div class="container">
+      <div class="stats">
+        <div class="item"><div class="num">7</div><div class="label">People in the studio</div></div>
+        <div class="item"><div class="num">62</div><div class="label">Projects shipped</div></div>
+        <div class="item"><div class="num">6</div><div class="label">Years in practice</div></div>
+        <div class="item"><div class="num">2</div><div class="label">Offices (BK &amp; LIS)</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section values">
+    <div class="container">
+      <div class="section-head">
+        <div class="text">
+          <span class="eyebrow">What we believe</span>
+          <h2>Four principles that shape every project.</h2>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <div class="value">
+          <div class="num">01 — Craft</div>
+          <h3>The details are the work.</h3>
+          <p>We sweat kerning, empty states, and loading spinners. The small things compound into the feeling of the whole product.</p>
+        </div>
+        <div class="value">
+          <div class="num">02 — Honesty</div>
+          <h3>No decks full of fluff.</h3>
+          <p>We show work in progress. We push back when we disagree. We'd rather have one hard conversation than ten polite ones.</p>
+        </div>
+        <div class="value">
+          <div class="num">03 — Focus</div>
+          <h3>Fewer projects, done properly.</h3>
+          <p>We cap our roster intentionally. One team, one project, one deep engagement at a time. That's how we ship work we're proud of.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top: 0;">
+    <div class="container">
+      <div class="section-head">
+        <div class="text">
+          <span class="eyebrow">The team</span>
+          <h2>Seven people, one studio.</h2>
+        </div>
+      </div>
+      <div class="team-grid">
+        <div class="member">
+          <div class="photo bg-a"><div class="initials">EM</div></div>
+          <h4>Elena Marés</h4>
+          <div class="role">Co-founder, Design</div>
+        </div>
+        <div class="member">
+          <div class="photo bg-b"><div class="initials">JK</div></div>
+          <h4>Jonas Kellner</h4>
+          <div class="role">Co-founder, Engineering</div>
+        </div>
+        <div class="member">
+          <div class="photo bg-c"><div class="initials">AT</div></div>
+          <h4>Aya Tanaka</h4>
+          <div class="role">Design Lead</div>
+        </div>
+        <div class="member">
+          <div class="photo bg-d"><div class="initials">RO</div></div>
+          <h4>Rafael Osei</h4>
+          <div class="role">Brand Designer</div>
+        </div>
+        <div class="member">
+          <div class="photo bg-b"><div class="initials">SL</div></div>
+          <h4>Sara Lindqvist</h4>
+          <div class="role">Senior Engineer</div>
+        </div>
+        <div class="member">
+          <div class="photo bg-a"><div class="initials">NP</div></div>
+          <h4>Noor Patel</h4>
+          <div class="role">Product Designer</div>
+        </div>
+        <div class="member">
+          <div class="photo bg-d"><div class="initials">MC</div></div>
+          <h4>Marco Calvino</h4>
+          <div class="role">Studio Director</div>
+        </div>
+        <div class="member">
+          <div class="photo bg-c"><div class="initials">HW</div></div>
+          <h4>Hannah Weiss</h4>
+          <div class="role">Writer &amp; Strategist</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="inner">
+      <div class="brand">
+        <div class="logo">Kilo<span class="logo-dot">.</span></div>
+        <p>An independent design studio based in Brooklyn and Lisbon.</p>
+      </div>
+      <div>
+        <h4>Studio</h4>
+        <ul>
+          <li><a href="about.html">About</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Brand identity</a></li>
+          <li><a href="#">Product design</a></li>
+          <li><a href="#">Marketing sites</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Elsewhere</h4>
+        <ul>
+          <li><a href="#">Twitter</a></li>
+          <li><a href="#">Instagram</a></li>
+          <li><a href="#">LinkedIn</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="bottom">
+      <span>© 2026 Kilo Studio</span>
+      <span>Made with care in Brooklyn</span>
+    </div>
   </footer>
 
 </body>
