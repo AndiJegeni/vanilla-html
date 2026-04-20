@@ -3,66 +3,172 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Halcyon® — Independent design studio</title>
+  <title>Kilo® — Independent design studio</title>
   <link rel="stylesheet" href="style.css">
   <style>
     /* ---------- Hero ---------- */
-    .hero { padding: 60px 0 40px; }
-    .hero-grid { display: grid; grid-template-columns: 1fr 2.2fr; gap: 48px; align-items: start; }
-    .hero-meta { padding-top: 12px; }
-    .hero-meta .label { margin-bottom: 14px; }
-    .hero-meta p { color: var(--muted); font-size: 0.95rem; max-width: 24ch; line-height: 1.45; }
-    .hero-headline { position: relative; }
-    .hero-headline .display { max-width: 16ch; }
-    .hero-headline .display em { font-family: var(--serif); font-style: italic; }
-    .hero-sub {
-      margin-top: 48px;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+    .hero { padding: 40px 0 32px; }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.7fr;
+      gap: 80px;
+      align-items: end;
+      padding-bottom: 40px;
+      border-bottom: 1px solid var(--line);
     }
-    .hero-sub .about { max-width: 52ch; color: var(--ink-2); font-size: 1.05rem; line-height: 1.55; }
-    .hero-sub .actions { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
-    .hero-sub .actions .pill { margin-bottom: 4px; }
+    .hero-left { padding-bottom: 8px; }
+    .hero-left .label { margin-bottom: 20px; }
+    .hero-left p {
+      color: var(--ink-2);
+      max-width: 30ch;
+      font-size: 1rem;
+      line-height: 1.55;
+      margin-bottom: 32px;
+    }
+    .hero-left .actions { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+    .hero-right .display {
+      font-size: clamp(2.25rem, 4.8vw, 4rem);
+      line-height: 1.02;
+      max-width: 17ch;
+    }
+    .hero-right .display em { font-style: italic; color: var(--ink); }
+    .hero-right .sub {
+      margin-top: 28px;
+      padding-top: 24px;
+      border-top: 1px solid var(--line);
+      font-family: var(--sans);
+      font-size: 1rem;
+      color: var(--ink-2);
+      max-width: 48ch;
+      line-height: 1.55;
+    }
 
-    /* ---------- Hero visual ---------- */
-    .hero-visual {
-      margin-top: 80px;
-      position: relative;
-      aspect-ratio: 16 / 7;
-      background: var(--ink);
-      overflow: hidden;
-      border-radius: 2px;
+    /* ---------- Featured spotlight ---------- */
+    .spotlight { margin-top: 40px; }
+    .spotlight-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding-bottom: 16px;
+      gap: 16px;
     }
-    .hero-visual::before {
-      content: ''; position: absolute;
-      top: 50%; left: 15%;
-      width: 42vmin; height: 42vmin; max-width: 520px; max-height: 520px;
+    .spotlight-visual {
+      aspect-ratio: 21 / 10;
+      background: var(--ink);
+      display: grid;
+      grid-template-columns: 1.1fr 1fr 1fr;
+      overflow: hidden;
+      position: relative;
+    }
+    .sp-panel {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .sp-a { background: #e8e1cf; }
+    .sp-a .mark {
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: clamp(10rem, 22vw, 24rem);
+      line-height: 0.8;
+      color: var(--ink);
+      transform: translate(-4%, 6%);
+    }
+    .sp-a::after {
+      content: 'Northwind Bank / Rev. 2025';
+      position: absolute; bottom: 18px; left: 18px;
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #7a6f4f;
+    }
+
+    .sp-b { background: var(--ink); }
+    .sp-b::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 72%; aspect-ratio: 1;
       border-radius: 50%;
       background: var(--bg);
-      transform: translateY(-50%);
     }
-    .hero-visual::after {
-      content: ''; position: absolute;
-      top: 50%; right: 12%;
-      width: 26vmin; height: 26vmin; max-width: 320px; max-height: 320px;
+    .sp-b::after {
+      content: '';
+      position: absolute;
+      bottom: 14%; right: 12%;
+      width: 18%; aspect-ratio: 1;
       background: var(--accent);
-      transform: translateY(-50%);
     }
-    .hv-label {
-      position: absolute; bottom: 20px; left: 20px;
+    .sp-b .tag {
+      position: absolute; top: 18px; left: 18px;
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: #8a8a7e;
+      z-index: 2;
+    }
+
+    .sp-c { background: var(--accent); position: relative; }
+    .sp-c .inner {
+      padding: 28px;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      color: var(--bg);
+    }
+    .sp-c .inner .top {
+      font-family: var(--sans);
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--bg);
+      opacity: 0.8;
+    }
+    .sp-c .inner .big {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 2.4vw, 2.25rem);
+      line-height: 1.05;
+      letter-spacing: -0.015em;
+      color: var(--bg);
+      max-width: 14ch;
+    }
+    .sp-c .inner .big em { font-style: italic; }
+    .sp-c .inner .bottom {
       font-family: var(--sans);
       font-size: 0.72rem;
       text-transform: uppercase;
       letter-spacing: 0.14em;
-      color: var(--muted-2);
+      color: var(--bg);
+      opacity: 0.85;
     }
-    .hv-label-r {
-      position: absolute; bottom: 20px; right: 20px;
-      font-family: var(--sans);
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: var(--muted-2);
+
+    .spotlight-cap {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr auto;
+      gap: 24px;
+      padding: 20px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      align-items: baseline;
     }
+    .spotlight-cap .title {
+      font-family: var(--serif);
+      font-size: clamp(1.25rem, 1.7vw, 1.5rem);
+      letter-spacing: -0.015em;
+      line-height: 1.2;
+    }
+    .spotlight-cap .k { color: var(--muted); font-family: var(--sans); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.14em; display: block; margin-bottom: 4px; }
+    .spotlight-cap .v { font-family: var(--sans); font-size: 0.9rem; color: var(--ink); }
+    .spotlight-cap .cta { color: var(--ink); }
+    .spotlight-cap .cta:hover { color: var(--accent); }
 
     /* ---------- Marquee ---------- */
     .what-we-do-marquee em { color: var(--accent); font-style: italic; }
@@ -163,8 +269,9 @@
     .cap p { color: var(--muted); font-size: 0.88rem; }
 
     @media (max-width: 900px) {
-      .hero-grid { grid-template-columns: 1fr; }
-      .hero-sub { grid-template-columns: 1fr; gap: 24px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; align-items: start; }
+      .spotlight-visual { aspect-ratio: 4 / 5; grid-template-columns: 1fr; grid-template-rows: 1fr 1fr 1fr; }
+      .spotlight-cap { grid-template-columns: 1fr; gap: 12px; }
       .services-grid { grid-template-columns: 1fr; }
       .work-row { grid-template-columns: 40px 1fr 70px; gap: 16px; }
       .work-row .work-kind, .work-row .work-year { display: none; }
@@ -178,7 +285,7 @@
 
   <header class="site-header">
     <div class="inner">
-      <a href="index.html" class="logo">Halcyon<sup>®</sup></a>
+      <a href="index.html" class="logo">Kilo<sup>®</sup></a>
       <nav class="nav">
         <a href="index.html" class="active">Index</a>
         <a href="work.html">Work</a>
@@ -197,28 +304,52 @@
   <section class="hero">
     <div class="container">
       <div class="hero-grid">
-        <div class="hero-meta">
-          <div class="label">Index / 01</div>
-          <p>Independent design studio, est. Brooklyn, 2019. Brand, product, and marketing — shipped quietly, built to last.</p>
+        <div class="hero-left">
+          <div class="label">Index / 01 — Brooklyn · Lisbon</div>
+          <p>Kilo is an independent design studio working on brand, product, and marketing since 2019 — shipped quietly, built to last.</p>
+          <div class="actions">
+            <span class="pill"><span class="swatch"></span>Accepting 2 projects — Q3 2026</span>
+            <a href="work.html" class="btn">See selected work <span class="arrow">→</span></a>
+          </div>
         </div>
-        <div class="hero-headline">
-          <h1 class="display">Halcyon is a small studio making <em>careful</em>, considered work for people who care about the details.</h1>
-        </div>
-      </div>
-
-      <div class="hero-sub" style="margin-left: auto; max-width: calc(100% / 1.4);">
-        <div class="about">
-          <p>We work with founders, operators, and creative teams who would rather ship one thing properly than ten things quickly. Since 2019, we've helped dozens of companies define their brand, launch their product, and find the right voice along the way.</p>
-        </div>
-        <div class="actions">
-          <span class="pill"><span class="swatch"></span>Accepting 2 projects — Q3 2026</span>
-          <a href="work.html" class="btn">See selected work <span class="arrow">→</span></a>
+        <div class="hero-right">
+          <h1 class="display">A studio for <em>careful</em>, considered work — built for people who care about the details.</h1>
+          <p class="sub">We partner with founders and creative teams who would rather ship one thing properly than ten things quickly. Since 2019, we've helped dozens of companies define their brand, launch their product, and find the right voice along the way.</p>
         </div>
       </div>
 
-      <div class="hero-visual" aria-hidden="true">
-        <span class="hv-label">Fig. 01 — Studio mark, rev. 04</span>
-        <span class="hv-label-r">Ref. H/26/Y</span>
+      <div class="spotlight" aria-label="Featured release">
+        <div class="spotlight-head">
+          <span class="label label-ink">Featured release — 2025</span>
+          <span class="num-index">Case Nº 24 · Rev. 04</span>
+        </div>
+        <div class="spotlight-visual">
+          <div class="sp-panel sp-a">
+            <span class="mark">N.</span>
+          </div>
+          <div class="sp-panel sp-b">
+            <span class="tag">Fig. 02 — Mark</span>
+          </div>
+          <div class="sp-panel sp-c">
+            <div class="inner">
+              <span class="top">File / 24 — 2025</span>
+              <span class="big">A community bank, <em>reintroduced</em>.</span>
+              <span class="bottom">Brand · Naming · Guidelines</span>
+            </div>
+          </div>
+        </div>
+        <div class="spotlight-cap">
+          <div class="title">Northwind Bank — complete brand identity for a community bank's relaunch.</div>
+          <div>
+            <span class="k">Industry</span>
+            <span class="v">Financial services</span>
+          </div>
+          <div>
+            <span class="k">Engagement</span>
+            <span class="v">10 weeks, 2025</span>
+          </div>
+          <a href="work.html" class="cta link-u">Read case →</a>
+        </div>
       </div>
     </div>
   </section>
@@ -226,8 +357,8 @@
   <!-- Marquee of client names -->
   <div class="marquee what-we-do-marquee">
     <div class="marquee-track">
-      <span>Northwind Bank</span><span>— Parallel Health <em>↗</em></span><span>Otto &amp; Co.</span><span>— Field Notes</span><span>Halcyon Sleep <em>↗</em></span><span>— Brightline Labs</span><span>Marlow &amp; Field</span><span>— Ochre Foundry</span><span>Slate &amp; Ink <em>↗</em></span><span>— Foundry Books</span>
-      <span>Northwind Bank</span><span>— Parallel Health <em>↗</em></span><span>Otto &amp; Co.</span><span>— Field Notes</span><span>Halcyon Sleep <em>↗</em></span><span>— Brightline Labs</span><span>Marlow &amp; Field</span><span>— Ochre Foundry</span><span>Slate &amp; Ink <em>↗</em></span><span>— Foundry Books</span>
+      <span>Northwind Bank</span><span>— Parallel Health <em>↗</em></span><span>Otto &amp; Co.</span><span>— Field Notes</span><span>Silva Sleep <em>↗</em></span><span>— Brightline Labs</span><span>Marlow &amp; Field</span><span>— Ochre Foundry</span><span>Slate &amp; Ink <em>↗</em></span><span>— Foundry Books</span>
+      <span>Northwind Bank</span><span>— Parallel Health <em>↗</em></span><span>Otto &amp; Co.</span><span>— Field Notes</span><span>Silva Sleep <em>↗</em></span><span>— Brightline Labs</span><span>Marlow &amp; Field</span><span>— Ochre Foundry</span><span>Slate &amp; Ink <em>↗</em></span><span>— Foundry Books</span>
     </div>
   </div>
 
@@ -276,7 +407,7 @@
         </a>
         <a href="work.html" class="work-row">
           <span class="num">05</span>
-          <span class="work-title">Halcyon Sleep</span>
+          <span class="work-title">Silva Sleep</span>
           <span class="work-kind">Brand &amp; mobile product</span>
           <span class="work-year">2023</span>
           <span class="arrow-cell">→</span>
@@ -380,12 +511,12 @@
 
       <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center; margin-bottom: 40px;">
         <a href="contact.html" class="btn" style="background: var(--bg); color: var(--ink); border-color: var(--bg);">Start a project <span class="arrow">→</span></a>
-        <a href="mailto:hello@halcyon.studio" class="link-u" style="color: var(--bg);">hello@halcyon.studio</a>
+        <a href="mailto:hello@kilo.studio" class="link-u" style="color: var(--bg);">hello@kilo.studio</a>
       </div>
 
       <div class="footer-grid">
         <div class="brand">
-          <div class="logo" style="color: var(--bg);">Halcyon<sup>®</sup></div>
+          <div class="logo" style="color: var(--bg);">Kilo<sup>®</sup></div>
           <p>An independent design studio working out of Brooklyn and Lisbon since 2019.</p>
         </div>
         <div>
@@ -415,7 +546,7 @@
       </div>
 
       <div class="footer-bottom">
-        <span>© Halcyon Studio, 2019–2026</span>
+        <span>© Kilo Studio, 2019–2026</span>
         <span>68 Jay St, Brooklyn · Rua da Boavista, Lisboa</span>
         <span>Index — Rev. 04</span>
       </div>
