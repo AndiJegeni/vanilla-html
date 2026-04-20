@@ -3,99 +3,174 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kilo — Independent design studio</title>
+  <title>Halcyon® — Independent design studio</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Hero */
-    .hero { padding: 120px 0 100px; }
-    .hero .inner { max-width: 1000px; }
-    .hero h1 { margin-bottom: 28px; }
-    .hero h1 em { font-style: normal; color: var(--accent); }
-    .hero p.lead { margin-bottom: 36px; max-width: 680px; }
-    .hero .actions { display: flex; gap: 14px; flex-wrap: wrap; }
+    /* ---------- Hero ---------- */
+    .hero { padding: 60px 0 40px; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 2.2fr; gap: 48px; align-items: start; }
+    .hero-meta { padding-top: 12px; }
+    .hero-meta .label { margin-bottom: 14px; }
+    .hero-meta p { color: var(--muted); font-size: 0.95rem; max-width: 24ch; line-height: 1.45; }
+    .hero-headline { position: relative; }
+    .hero-headline .display { max-width: 16ch; }
+    .hero-headline .display em { font-family: var(--serif); font-style: italic; }
+    .hero-sub {
+      margin-top: 48px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+    }
+    .hero-sub .about { max-width: 52ch; color: var(--ink-2); font-size: 1.05rem; line-height: 1.55; }
+    .hero-sub .actions { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+    .hero-sub .actions .pill { margin-bottom: 4px; }
 
-    /* Marquee-ish logo strip */
-    .logos {
+    /* ---------- Hero visual ---------- */
+    .hero-visual {
+      margin-top: 80px;
+      position: relative;
+      aspect-ratio: 16 / 7;
+      background: var(--ink);
+      overflow: hidden;
+      border-radius: 2px;
+    }
+    .hero-visual::before {
+      content: ''; position: absolute;
+      top: 50%; left: 15%;
+      width: 42vmin; height: 42vmin; max-width: 520px; max-height: 520px;
+      border-radius: 50%;
+      background: var(--bg);
+      transform: translateY(-50%);
+    }
+    .hero-visual::after {
+      content: ''; position: absolute;
+      top: 50%; right: 12%;
+      width: 26vmin; height: 26vmin; max-width: 320px; max-height: 320px;
+      background: var(--accent);
+      transform: translateY(-50%);
+    }
+    .hv-label {
+      position: absolute; bottom: 20px; left: 20px;
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted-2);
+    }
+    .hv-label-r {
+      position: absolute; bottom: 20px; right: 20px;
+      font-family: var(--sans);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--muted-2);
+    }
+
+    /* ---------- Marquee ---------- */
+    .what-we-do-marquee em { color: var(--accent); font-style: italic; }
+
+    /* ---------- Work index ---------- */
+    .work-index { padding: 0; }
+    .work-row {
+      display: grid;
+      grid-template-columns: 60px 1.4fr 1fr 1fr 90px;
+      gap: 32px;
+      padding: 28px 0;
+      align-items: center;
+      border-bottom: 1px solid var(--line);
+      cursor: pointer;
+      transition: padding 0.25s ease, color 0.25s ease;
+    }
+    .work-row:first-child { border-top: 1px solid var(--line); }
+    .work-row:hover { padding-left: 16px; padding-right: 16px; }
+    .work-row:hover .work-title { color: var(--accent); }
+    .work-row .num { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); letter-spacing: 0.04em; font-feature-settings: "tnum"; }
+    .work-row .work-title {
+      font-family: var(--serif);
+      font-size: clamp(1.5rem, 2.4vw, 2rem);
+      line-height: 1; letter-spacing: -0.02em;
+      transition: color 0.2s ease;
+    }
+    .work-row .work-kind, .work-row .work-year {
+      font-family: var(--sans);
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+    .work-row .arrow-cell {
+      text-align: right;
+      font-size: 1.4rem;
+      color: var(--ink);
+      opacity: 0.3;
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+    .work-row:hover .arrow-cell { opacity: 1; transform: translateX(6px); }
+
+    /* ---------- Services grid ---------- */
+    .services { background: var(--bg-alt); padding: 120px 0; }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 48px; }
+    .service {
+      padding-top: 32px;
+      border-top: 1px solid var(--line-strong);
+    }
+    .service .num { font-family: var(--sans); font-size: 0.78rem; color: var(--muted); letter-spacing: 0.06em; margin-bottom: 40px; display: block; }
+    .service h3 {
+      font-family: var(--serif);
+      font-weight: 400;
+      font-size: 1.75rem;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .service p { color: var(--ink-2); margin-bottom: 24px; }
+    .service ul li {
+      padding: 8px 0;
+      font-size: 0.9rem;
+      border-bottom: 1px dotted var(--line-strong);
+      color: var(--ink-2);
+    }
+    .service ul li:last-child { border-bottom: none; }
+
+    /* ---------- Philosophy ---------- */
+    .philosophy { padding: 140px 0; }
+    .philosophy .quote {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4.5vw, 3.75rem);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      max-width: 22ch;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .philosophy .quote em { color: var(--accent); font-style: italic; }
+    .philosophy .attr { text-align: center; margin-top: 40px; color: var(--muted); font-size: 0.9rem; }
+
+    /* ---------- Capabilities strip ---------- */
+    .cap-strip {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
       border-top: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
-      padding: 28px 0;
     }
-    .logos .row {
-      display: flex; justify-content: space-between; align-items: center; gap: 40px;
-      color: var(--muted); font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
-      font-size: 1rem; flex-wrap: wrap;
+    .cap {
+      padding: 40px 28px;
+      border-right: 1px solid var(--line);
     }
+    .cap:last-child { border-right: none; }
+    .cap .big {
+      font-family: var(--serif);
+      font-size: 3.5rem;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+    }
+    .cap p { color: var(--muted); font-size: 0.88rem; }
 
-    /* Services */
-    .service-card { background: var(--surface); border: 1px solid var(--line); padding: 32px; }
-    .service-card .mark {
-      width: 40px; height: 40px; background: var(--ink); color: var(--bg);
-      display: flex; align-items: center; justify-content: center;
-      font-weight: 700; font-size: 0.95rem; margin-bottom: 24px;
-    }
-
-    /* Work preview */
-    .work-preview { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
-    .work-item { display: block; }
-    .work-thumb {
-      aspect-ratio: 4 / 3;
-      background: var(--surface);
-      border: 1px solid var(--line);
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 20px;
-    }
-    .work-thumb .shape {
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-    }
-    .thumb-a { background: #f2ede3; }
-    .thumb-a .shape::before {
-      content: ''; width: 46%; aspect-ratio: 1; background: var(--ink); border-radius: 50%;
-    }
-    .thumb-b { background: #e8ebe4; }
-    .thumb-b .shape::before {
-      content: ''; width: 55%; height: 14px; background: var(--ink);
-    }
-    .thumb-c { background: #eee6d8; }
-    .thumb-c .shape::before {
-      content: ''; width: 46%; aspect-ratio: 1; background: var(--accent);
-    }
-    .thumb-d { background: #e1e4de; }
-    .thumb-d .shape::before {
-      content: ''; width: 0; height: 0;
-      border-left: 80px solid transparent; border-right: 80px solid transparent;
-      border-bottom: 140px solid var(--ink);
-    }
-    .work-meta { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
-    .work-meta h3 { margin-bottom: 4px; }
-    .work-meta .year { color: var(--muted); font-size: 0.9rem; }
-    .work-meta .kind { color: var(--muted); font-size: 0.9rem; }
-
-    /* Quote */
-    .quote {
-      max-width: 900px; margin: 0 auto;
-      font-size: clamp(1.5rem, 2.8vw, 2.25rem);
-      line-height: 1.3; letter-spacing: -0.01em;
-      color: var(--ink); font-weight: 500;
-    }
-    .quote::before { content: '“'; font-size: 1.2em; color: var(--accent); margin-right: 4px; }
-    .quote::after { content: '”'; color: var(--accent); }
-    .quote-author { margin-top: 28px; color: var(--muted); font-size: 0.95rem; }
-
-    /* CTA */
-    .cta {
-      background: var(--ink); color: var(--bg);
-      padding: 80px 0;
-    }
-    .cta .inner { max-width: 900px; margin: 0 auto; padding: 0 32px; text-align: center; }
-    .cta h2 { color: var(--bg); margin-bottom: 20px; }
-    .cta p { color: #c7c7c7; margin-bottom: 32px; }
-    .cta .btn { background: var(--bg); color: var(--ink); border-color: var(--bg); }
-    .cta .btn:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
-
-    @media (max-width: 720px) {
-      .work-preview { grid-template-columns: 1fr; }
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-sub { grid-template-columns: 1fr; gap: 24px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .work-row { grid-template-columns: 40px 1fr 70px; gap: 16px; }
+      .work-row .work-kind, .work-row .work-year { display: none; }
+      .cap-strip { grid-template-columns: 1fr 1fr; }
+      .cap { border-bottom: 1px solid var(--line); }
+      .cap:nth-child(even) { border-right: none; }
     }
   </style>
 </head>
@@ -103,177 +178,263 @@
 
   <header class="site-header">
     <div class="inner">
-      <a href="index.html" class="logo">Kilo<span class="logo-dot">.</span></a>
+      <a href="index.html" class="logo">Halcyon<sup>®</sup></a>
       <nav class="nav">
-        <a href="index.html" class="active">Home</a>
+        <a href="index.html" class="active">Index</a>
         <a href="work.html">Work</a>
-        <a href="about.html">About</a>
-        <a href="contact.html" class="btn">Start a project</a>
+        <a href="about.html">Studio</a>
+        <a href="contact.html">Contact</a>
       </nav>
+      <a href="contact.html" class="header-cta">Start a project ↗</a>
     </div>
   </header>
 
+  <div class="meta-row">
+    <span><span class="dot"></span>Currently available — Summer 2026</span>
+    <span id="clock">New York, —:—</span>
+  </div>
+
   <section class="hero">
-    <div class="container inner">
-      <span class="eyebrow">Independent design studio · Est. 2019</span>
-      <h1>We build brands and products that feel <em>honest</em>, clear, and built to last.</h1>
-      <p class="lead">Kilo is a small team of designers and engineers working with founders and teams who care deeply about the details.</p>
-      <div class="actions">
-        <a href="work.html" class="btn">See our work</a>
-        <a href="contact.html" class="btn btn-ghost">Get in touch</a>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-meta">
+          <div class="label">Index / 01</div>
+          <p>Independent design studio, est. Brooklyn, 2019. Brand, product, and marketing — shipped quietly, built to last.</p>
+        </div>
+        <div class="hero-headline">
+          <h1 class="display">Halcyon is a small studio making <em>careful</em>, considered work for people who care about the details.</h1>
+        </div>
+      </div>
+
+      <div class="hero-sub" style="margin-left: auto; max-width: calc(100% / 1.4);">
+        <div class="about">
+          <p>We work with founders, operators, and creative teams who would rather ship one thing properly than ten things quickly. Since 2019, we've helped dozens of companies define their brand, launch their product, and find the right voice along the way.</p>
+        </div>
+        <div class="actions">
+          <span class="pill"><span class="swatch"></span>Accepting 2 projects — Q3 2026</span>
+          <a href="work.html" class="btn">See selected work <span class="arrow">→</span></a>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <span class="hv-label">Fig. 01 — Studio mark, rev. 04</span>
+        <span class="hv-label-r">Ref. H/26/Y</span>
       </div>
     </div>
   </section>
 
-  <div class="logos">
-    <div class="container">
-      <div class="row">
-        <span>Northwind</span>
-        <span>Parallel</span>
-        <span>Otto &amp; Co</span>
-        <span>Field Notes</span>
-        <span>Halcyon</span>
-        <span>Brightline</span>
-      </div>
+  <!-- Marquee of client names -->
+  <div class="marquee what-we-do-marquee">
+    <div class="marquee-track">
+      <span>Northwind Bank</span><span>— Parallel Health <em>↗</em></span><span>Otto &amp; Co.</span><span>— Field Notes</span><span>Halcyon Sleep <em>↗</em></span><span>— Brightline Labs</span><span>Marlow &amp; Field</span><span>— Ochre Foundry</span><span>Slate &amp; Ink <em>↗</em></span><span>— Foundry Books</span>
+      <span>Northwind Bank</span><span>— Parallel Health <em>↗</em></span><span>Otto &amp; Co.</span><span>— Field Notes</span><span>Halcyon Sleep <em>↗</em></span><span>— Brightline Labs</span><span>Marlow &amp; Field</span><span>— Ochre Foundry</span><span>Slate &amp; Ink <em>↗</em></span><span>— Foundry Books</span>
     </div>
   </div>
 
+  <!-- Selected work -->
   <section class="section">
     <div class="container">
       <div class="section-head">
-        <div class="text">
-          <span class="eyebrow">What we do</span>
-          <h2>Three practices, one studio.</h2>
-          <p>We work across brand, product, and marketing — but always with the same approach: careful research, then careful execution.</p>
+        <div class="num">
+          <span class="label">Section / 02</span>
+          <div style="height: 16px;"></div>
+          <span class="num-index">Selected work, 2023–2026</span>
+        </div>
+        <div>
+          <h2 class="section-title">A small selection of recent projects — with more available on request.</h2>
         </div>
       </div>
 
-      <div class="grid-3">
-        <div class="service-card">
-          <div class="mark">01</div>
-          <h3>Brand identity</h3>
-          <p>Naming, visual systems, typography, and the long documents that hold it all together. We build brands that scale.</p>
-        </div>
-        <div class="service-card">
-          <div class="mark">02</div>
-          <h3>Product design</h3>
-          <p>Interfaces, design systems, and end-to-end flows. We ship web and mobile products with engineering teams from day one.</p>
-        </div>
-        <div class="service-card">
-          <div class="mark">03</div>
-          <h3>Marketing sites</h3>
-          <p>Landing pages and company sites that actually convert. Fast, accessible, and written with real editorial care.</p>
-        </div>
+      <div class="work-index">
+        <a href="work.html" class="work-row">
+          <span class="num">01</span>
+          <span class="work-title">Northwind Bank</span>
+          <span class="work-kind">Brand identity, naming</span>
+          <span class="work-year">2025</span>
+          <span class="arrow-cell">→</span>
+        </a>
+        <a href="work.html" class="work-row">
+          <span class="num">02</span>
+          <span class="work-title">Parallel Health</span>
+          <span class="work-kind">Product &amp; design system</span>
+          <span class="work-year">2025</span>
+          <span class="arrow-cell">→</span>
+        </a>
+        <a href="work.html" class="work-row">
+          <span class="num">03</span>
+          <span class="work-title"><em style="font-style: italic;">Otto &amp; Co.</em></span>
+          <span class="work-kind">Marketing &amp; editorial</span>
+          <span class="work-year">2024</span>
+          <span class="arrow-cell">→</span>
+        </a>
+        <a href="work.html" class="work-row">
+          <span class="num">04</span>
+          <span class="work-title">Field Notes</span>
+          <span class="work-kind">Brand &amp; packaging</span>
+          <span class="work-year">2024</span>
+          <span class="arrow-cell">→</span>
+        </a>
+        <a href="work.html" class="work-row">
+          <span class="num">05</span>
+          <span class="work-title">Halcyon Sleep</span>
+          <span class="work-kind">Brand &amp; mobile product</span>
+          <span class="work-year">2023</span>
+          <span class="arrow-cell">→</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <section class="section" style="padding-top: 0;">
+  <!-- Services -->
+  <section class="services">
     <div class="container">
-      <div class="section-head">
-        <div class="text">
-          <span class="eyebrow">Selected work</span>
-          <h2>Recent projects.</h2>
+      <div class="section-head" style="border-bottom: 1px solid var(--line-strong);">
+        <div class="num">
+          <span class="label">Section / 03</span>
+          <div style="height: 16px;"></div>
+          <span class="num-index">Capabilities</span>
         </div>
-        <a href="work.html" class="btn btn-ghost">View all</a>
+        <div>
+          <h2 class="section-title">Three practices, one team, working in concert.</h2>
+        </div>
       </div>
 
-      <div class="work-preview">
-        <a href="work.html" class="work-item">
-          <div class="work-thumb thumb-a"><div class="shape"></div></div>
-          <div class="work-meta">
-            <div>
-              <h3>Northwind Bank</h3>
-              <div class="kind">Brand identity</div>
-            </div>
-            <span class="year">2025</span>
-          </div>
-        </a>
-        <a href="work.html" class="work-item">
-          <div class="work-thumb thumb-c"><div class="shape"></div></div>
-          <div class="work-meta">
-            <div>
-              <h3>Parallel Health</h3>
-              <div class="kind">Product design</div>
-            </div>
-            <span class="year">2025</span>
-          </div>
-        </a>
-        <a href="work.html" class="work-item">
-          <div class="work-thumb thumb-d"><div class="shape"></div></div>
-          <div class="work-meta">
-            <div>
-              <h3>Otto &amp; Co</h3>
-              <div class="kind">Marketing site</div>
-            </div>
-            <span class="year">2024</span>
-          </div>
-        </a>
-        <a href="work.html" class="work-item">
-          <div class="work-thumb thumb-b"><div class="shape"></div></div>
-          <div class="work-meta">
-            <div>
-              <h3>Field Notes</h3>
-              <div class="kind">Brand &amp; packaging</div>
-            </div>
-            <span class="year">2024</span>
-          </div>
-        </a>
+      <div class="services-grid">
+        <div class="service">
+          <span class="num">Practice / 01</span>
+          <h3>Brand <em style="font-style: italic;">identity</em></h3>
+          <p>Naming, visual systems, typography, and the governing documents. We build brands that work in the wild, not just in presentations.</p>
+          <ul>
+            <li>Naming &amp; verbal identity</li>
+            <li>Logo &amp; mark design</li>
+            <li>Visual systems &amp; guidelines</li>
+            <li>Typographic direction</li>
+          </ul>
+        </div>
+        <div class="service">
+          <span class="num">Practice / 02</span>
+          <h3>Product <em style="font-style: italic;">design</em></h3>
+          <p>Interface design, systems, and end-to-end flows. We ship web and mobile products alongside engineering teams from day one.</p>
+          <ul>
+            <li>Interface &amp; interaction</li>
+            <li>Design systems at scale</li>
+            <li>User research &amp; testing</li>
+            <li>Prototyping &amp; handoff</li>
+          </ul>
+        </div>
+        <div class="service">
+          <span class="num">Practice / 03</span>
+          <h3>Marketing <em style="font-style: italic;">sites</em></h3>
+          <p>Landing pages and company sites that actually convert. Fast, accessible, and written with real editorial care from the first line.</p>
+          <ul>
+            <li>Company &amp; product sites</li>
+            <li>Editorial &amp; content design</li>
+            <li>Illustration &amp; art direction</li>
+            <li>Copy &amp; positioning</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section" style="padding-top: 0;">
+  <!-- Philosophy -->
+  <section class="philosophy">
+    <div class="container-tight">
+      <p class="quote">We'd rather make <em>one beautiful thing</em> than ten loud ones. Craft is not decoration — it's the work.</p>
+      <p class="attr">— The studio, on why we work this way</p>
+    </div>
+  </section>
+
+  <!-- Capabilities strip -->
+  <section class="section-sm">
     <div class="container">
-      <p class="quote">Kilo delivered the kind of work that makes our engineers proud and our customers trust us faster. They think like owners.</p>
-      <p class="quote-author">— Mara Holloway, CEO of Parallel Health</p>
+      <div class="cap-strip">
+        <div class="cap">
+          <div class="big">7</div>
+          <div class="label label-ink" style="margin-bottom: 8px;">People</div>
+          <p>Small by choice. Everyone on your project, every week.</p>
+        </div>
+        <div class="cap">
+          <div class="big">62</div>
+          <div class="label label-ink" style="margin-bottom: 8px;">Projects</div>
+          <p>Shipped across brand, product, and marketing since 2019.</p>
+        </div>
+        <div class="cap">
+          <div class="big">6<span class="serif" style="color: var(--accent); font-style: italic;">+</span></div>
+          <div class="label label-ink" style="margin-bottom: 8px;">Years</div>
+          <p>Working together in the same studio, no agency overhead.</p>
+        </div>
+        <div class="cap">
+          <div class="big">2</div>
+          <div class="label label-ink" style="margin-bottom: 8px;">Offices</div>
+          <p>Brooklyn &amp; Lisbon. Clients across three time zones.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="cta">
-    <div class="inner">
-      <h2>Have a project in mind?</h2>
-      <p>We take on a handful of clients each quarter. Tell us what you're working on.</p>
-      <a href="contact.html" class="btn">Start a project</a>
-    </div>
-  </section>
-
+  <!-- Footer CTA -->
   <footer class="site-footer">
     <div class="inner">
-      <div class="brand">
-        <div class="logo">Kilo<span class="logo-dot">.</span></div>
-        <p>An independent design studio based in Brooklyn and Lisbon.</p>
+      <h2 class="footer-hero">Have something worth <em>making well?</em></h2>
+
+      <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: center; margin-bottom: 40px;">
+        <a href="contact.html" class="btn" style="background: var(--bg); color: var(--ink); border-color: var(--bg);">Start a project <span class="arrow">→</span></a>
+        <a href="mailto:hello@halcyon.studio" class="link-u" style="color: var(--bg);">hello@halcyon.studio</a>
       </div>
-      <div>
-        <h4>Studio</h4>
-        <ul>
-          <li><a href="about.html">About</a></li>
-          <li><a href="work.html">Work</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
+
+      <div class="footer-grid">
+        <div class="brand">
+          <div class="logo" style="color: var(--bg);">Halcyon<sup>®</sup></div>
+          <p>An independent design studio working out of Brooklyn and Lisbon since 2019.</p>
+        </div>
+        <div>
+          <h4>Studio</h4>
+          <ul>
+            <li><a href="about.html">About</a></li>
+            <li><a href="work.html">Work</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Practices</h4>
+          <ul>
+            <li><a href="#">Brand identity</a></li>
+            <li><a href="#">Product design</a></li>
+            <li><a href="#">Marketing sites</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Elsewhere</h4>
+          <ul>
+            <li><a href="#">Instagram ↗</a></li>
+            <li><a href="#">Are.na ↗</a></li>
+            <li><a href="#">Read.cv ↗</a></li>
+          </ul>
+        </div>
       </div>
-      <div>
-        <h4>Services</h4>
-        <ul>
-          <li><a href="#">Brand identity</a></li>
-          <li><a href="#">Product design</a></li>
-          <li><a href="#">Marketing sites</a></li>
-        </ul>
+
+      <div class="footer-bottom">
+        <span>© Halcyon Studio, 2019–2026</span>
+        <span>68 Jay St, Brooklyn · Rua da Boavista, Lisboa</span>
+        <span>Index — Rev. 04</span>
       </div>
-      <div>
-        <h4>Elsewhere</h4>
-        <ul>
-          <li><a href="#">Twitter</a></li>
-          <li><a href="#">Instagram</a></li>
-          <li><a href="#">LinkedIn</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="bottom">
-      <span>© 2026 Kilo Studio</span>
-      <span>Made with care in Brooklyn</span>
     </div>
   </footer>
+
+  <script>
+    function tick() {
+      const now = new Date();
+      const fmt = new Intl.DateTimeFormat('en-US', {
+        hour: 'numeric', minute: '2-digit', hour12: true,
+        timeZone: 'America/New_York'
+      });
+      const el = document.getElementById('clock');
+      if (el) el.textContent = 'New York, ' + fmt.format(now);
+    }
+    tick();
+    setInterval(tick, 30000);
+  </script>
 
 </body>
 </html>
